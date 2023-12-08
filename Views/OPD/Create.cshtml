@@ -1,0 +1,273 @@
+﻿@model AnwiamEyeClinicServices.Models.Opd
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="alert-primary d-flex justify-content-center">
+    @using (Html.BeginForm("DailyRecords", "OPD", FormMethod.Post))
+    {
+        <input type="date" value="" placeholder="YYYY-MM-DD" name="date" style="border:solid lightblue 3px; border-radius:5px;" />
+        <button type="submit" class="btn btn-primary btn-outline-light">Daily Records</button>
+    }
+</div>
+ @if (User.IsInRole("opd"))
+{
+    <a href="">
+        <div class="d-flex justify-content-center">
+
+            <div class="card col-md-5 border-2">
+
+                <div class="card-header d-inline-flex justify-content-start bg-primary ">
+                    <a asp-action="Create"><button class="btn-warning" style="border-radius:5px;">Refresh</button></a>
+                    <div style="margin-left:15%;"></div>
+                    <h4 style="text-align:center;color:white;">Patient Registry </h4>
+
+                </div>
+                <div class="card-body col-md-12 alert-primary" style="display:flex; justify-content:space-between;">
+                    <div class="row col-md-12">
+                        <div class="col-md-12">
+                            @using (Html.BeginForm("Create", "OPD", FormMethod.Post))
+                            {
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="row mb-3">
+                                    <label asp-for="PatientId" class="col-sm-3 col-form-label col-form-label-md">OPD No</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" value="" name="PatientId" class="form-control form-control-sm" style="border:solid lightblue 3px; border-radius:5px;"/>
+                                        <span asp-validation-for="PatientId" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label asp-for="PatientName" class="col-sm-3 col-form-label col-form-label-md">Name</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" value="" name="PatientName" class="form-control form-control-sm" style="border:solid lightblue 3px; border-radius:5px;" />
+                                        <span asp-validation-for="PatientName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+
+                                    <label asp-for="Address" class="col-sm-3 col-form-label col-form-label-md">Address</label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="Address" value="" name="Address" class="form-control form-control-sm" style="border:solid lightblue 3px; border-radius:5px;" />
+                                        <span asp-validation-for="Address" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label asp-for="Contact" class="col-sm-3 col-form-label col-form-label-md">Contact</label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="Contact" value="" name="Contact" class="form-control form-control-sm" style="border:solid lightblue 3px; border-radius:5px;" />
+                                        <span asp-validation-for="Contact" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-3 col-form-label col-form-label-md">Services</label>
+                                    <div class="col-sm-8">
+                                        <select multiple class="form-select form-select-sm" id="services" name="Services" style="border:solid lightblue 3px; border-radius:5px;">
+
+                                            <option style="font-weight:bolder"  value="Consultation-NEW">Consultation-NEW</option>
+                                            <option style="font-weight:bolder" value="Consultation-REVIEW">Consultation-REVIEW</option>
+                                            <option style="font-weight:bolder" value="OCT">OCT</option>
+                                            <option style="font-weight:bolder" value="Macula">Macula</option>
+                                            <option style="font-weight:bolder" value="Pachymetry">Pachymetry</option>
+                                            <option style="font-weight:bolder" value="RetinalImaging">Retinal Imaging</option>
+                                            <option style="font-weight:bolder" value="VFT">VFT (Visual Fields Test)</option>
+
+                                            <option style="font-weight:bolder" value="Frame">Frame sales</option>
+                                        </select>
+                                        <span asp-validation-for="Services" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label asp-for="Amount" class="col-sm-3 col-form-label col-form-label-md">Amount</label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="Amount" value="" name="Amount" class="form-control form-control-sm" style="border:solid lightblue 3px; border-radius:5px;" />
+                                        <span asp-validation-for="Amount"  class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label asp-for="Date" class="col-sm-3 col-form-label col-form-label-md">Date</label>
+                                    <div class="col-sm-8">
+                                        <input type="date" asp-for="Date" name="Date" placeholder="YYYY-MM-DD" class="form-control form-control-sm" style="border:solid lightblue 3px; border-radius:5px;" />
+                                        <span asp-validation-for="Date" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group d-inline-flex">
+                                    <input type="submit" value="Create" class="btn btn-primary" style="margin-right:30px;"/>
+
+                                    <h6 class="fadeInOut" style="animation-duration: 2s;">
+                                        @ViewBag.success
+                                    </h6>
+
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div></a>
+}
+@if (User.IsInRole("admin"))
+{
+    <a href="">
+        <div class="d-flex justify-content-center">
+
+            <div class="card col-md-5 border-2">
+
+                <div class="card-header d-inline-flex justify-content-start bg-primary ">
+                    <a asp-action="Create"><button class="btn-warning" style="border-radius:5px;">Refresh</button></a>
+                    <div style="margin-left:15%;"></div>
+                    <h4 style="text-align:center;color:white;">Patient Registry </h4>
+
+                </div>
+                <div class="card-body col-md-12 alert-primary" style="display:flex; justify-content:space-between;">
+                    <div class="row col-md-12">
+                        <div class="col-md-12">
+                            @using (Html.BeginForm("Create", "OPD", FormMethod.Post))
+                            {
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="row mb-3">
+                                    <label asp-for="PatientId" class="col-sm-3 col-form-label col-form-label-md">OPD No</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" value="" name="PatientId" class="form-control form-control-sm" style="border:solid lightblue 3px; border-radius:5px;" />
+                                        <span asp-validation-for="PatientId" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label asp-for="PatientName" class="col-sm-3 col-form-label col-form-label-md">Name</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" value="" name="PatientName" class="form-control form-control-sm" style="border:solid lightblue 3px; border-radius:5px;" />
+                                        <span asp-validation-for="PatientName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+
+                                    <label asp-for="Address" class="col-sm-3 col-form-label col-form-label-md">Address</label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="Address" value="" name="Address" class="form-control form-control-sm" style="border:solid lightblue 3px; border-radius:5px;" />
+                                        <span asp-validation-for="Address" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label asp-for="Contact" class="col-sm-3 col-form-label col-form-label-md">Contact</label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="Contact" value="" name="Contact" class="form-control form-control-sm" style="border:solid lightblue 3px; border-radius:5px;" />
+                                        <span asp-validation-for="Contact" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-3 col-form-label col-form-label-md">Services</label>
+                                    <div class="col-sm-8">
+                                        <select multiple class="form-select form-select-sm" id="services" name="Services" style="border:solid lightblue 3px; border-radius:5px;">
+
+                                            <option style="font-weight:bolder" value="Consultation-NEW">Consultation-NEW</option>
+                                            <option style="font-weight:bolder" value="Consultation-REVIEW">Consultation-REVIEW</option>
+                                            <option style="font-weight:bolder" value="OCT">OCT</option>
+                                            <option style="font-weight:bolder" value="Macula">Macula</option>
+                                            <option style="font-weight:bolder" value="Pachymetry">Pachymetry</option>
+                                            <option style="font-weight:bolder" value="RetinalImaging">Retinal Imaging</option>
+                                            <option style="font-weight:bolder" value="VFT">VFT (Visual Fields Test)</option>
+
+                                            <option style="font-weight:bolder" value="Frame">Frame sales</option>
+                                        </select>
+                                        <span asp-validation-for="Services" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label asp-for="Amount" class="col-sm-3 col-form-label col-form-label-md">Amount</label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="Amount" value="" name="Amount" class="form-control form-control-sm" style="border:solid lightblue 3px; border-radius:5px;" />
+                                        <span asp-validation-for="Amount" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label asp-for="Date" class="col-sm-3 col-form-label col-form-label-md">Date</label>
+                                    <div class="col-sm-8">
+                                        <input type="date" asp-for="Date" name="Date" placeholder="YYYY-MM-DD" class="form-control form-control-sm" style="border:solid lightblue 3px; border-radius:5px;" />
+                                        <span asp-validation-for="Date" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group d-inline-flex">
+                                    <input type="submit" value="Create" class="btn btn-primary" style="margin-right:30px;" />
+
+                                    <h6 class="fadeInOut" style="animation-duration: 2s;">
+                                        @ViewBag.success
+                                    </h6>
+
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </a>
+}
+@*<div class="card col-sm-4 row-cols-2">
+        
+            <div>
+            @using (Html.BeginForm("DailyRecords", "OPD", FormMethod.Post))
+            {
+                <input type="date" value="" placeholder="YYYY-MM-DD" name="date" />
+                <button type="submit" class="btn btn-primary">Daily Records</button>
+            }
+            </div>
+    *@    
+        
+        @*<div class="card-body setimage">*@
+           @* @if (ViewBag.records.Count > 0 )
+            {
+                <table class="table setimage2">
+                    <thead>
+                        <tr>
+                            <th class="visually-hidden"></th>
+                            <th>Id </th>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Contact</th>
+                            <th>Services</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th class="alert-success">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+
+                        @if (ViewBag.records != null)
+                        {
+                            var getlist = ViewBag.records as IEnumerable<AnwiamEyeClinicServices.Models.Opd>;
+                            @foreach (var item in getlist)
+                            {
+
+
+                                <tr>
+                                    @using (Html.BeginForm("Edit", "OPD", FormMethod.Post))
+                                    {
+                                        <td class="visually-hidden" name="Id"type="hidden">@item.Id</td>
+
+                                        <td contenteditable="true">@item.PatientId</td>
+                                        <td contenteditable="true">@item.PatientName</td>
+                                        <td contenteditable="true">@item.Address</td>
+                                        <td contenteditable="true">@item.Contact</td>
+                                        <td contenteditable="true">@item.Services</td>
+                                        <td contenteditable="true">@item.Amount</td>
+                                        <td contenteditable="true">@item.Date</td>
+                                        <td><a asp-action="Edit" asp-route-id="@item.Id">Edit</a></td>
+                                        @*<td><button type="submit" class="btn-primary" style="border-radius:5px;" >Save</button></td>*@
+                                    @*}*@
+                                </tr>
+
+                            @*}*@
+             @*           }
+
+                </tbody>
+            </table>
+            }*@
+            @*</div>*@
+            @*</div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<AnwiamEyeClinicServices.Models.Vft>
+
+@{
+    ViewData["Title"] = "DailyRecords";
+}
+
+<h5>VFT Records For @ViewBag.today</h5>
+
+<div style="display:flex;">
+    <a asp-action="Create" style="text-decoration:none; text-align:center;background-color:darkgoldenrod;
+width:10%; border-radius: 10px; font-weight:bolder; color:white;">Go Back</a>
+</div>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ScanId)
+            </th>
+            <th>
+                Patient Name
+            </th>
+            <th>
+                Referring Doctor
+            </th>
+            <th>
+                Facility
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ScanId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PatientName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReferredDrName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReFfacility)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date.Value.GetDateTimeFormats('D')[0])
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-controller="VFT" asp-route-id="@item.ScanId.ToString()">Edit</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

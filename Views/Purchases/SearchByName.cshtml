@@ -1,0 +1,88 @@
+﻿@model IEnumerable<AnwiamEyeClinicServices.Models.Purchase>
+
+@{
+    ViewData["Title"] = "SearchByName";
+}
+
+<h4>@ViewBag.PatientName's Purchase Record</h4>
+
+<p>
+    <a asp-action="Create">Back</a>
+</p>
+<table class="table">
+    <thead class="accordion-header alert-primary">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Telephone
+            </th>
+            <th>
+                SpectacleRx
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FrameType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FramePrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LensType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LensPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountPaid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @ViewBag.PatientName
+            </td>
+            <td>
+                @ViewBag.PatientTel
+            </td>
+            <td>
+                @ViewBag.PatientSpecs
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FrameType)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.FramePrice)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.LensType)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.LensPrice)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.AmountPaid)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PurchaseId">Edit</a> 
+            </td>
+        </tr>
+        }
+
+    </tbody>
+</table>

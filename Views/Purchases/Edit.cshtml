@@ -1,0 +1,72 @@
+﻿@model AnwiamEyeClinicServices.Models.Purchase
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Purchase</h4>
+<hr />
+@using (Html.BeginForm("Edit", "Purchases", FormMethod.Post))
+{
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" name="PurchaseId" asp-for="PurchaseId" />
+                <input type="hidden" name="PurchaseId" asp-for="PatientName" />
+            <div class="form-group">
+                <label asp-for="PatientId" class="control-label"></label>
+                <select asp-for="PatientId" class="form-control" name="PatientId" value="@ViewBag.PatientId" asp-items="@ViewBag.PatientId"></select>
+                <span asp-validation-for="PatientId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FrameType" class="control-label"></label>
+                <input asp-for="FrameType" name="FrameType" class="form-control" />
+                <span asp-validation-for="FrameType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FramePrice" class="control-label"></label>
+                    <input asp-for="FramePrice" name="FramePrice" class="form-control" />
+                <span asp-validation-for="FramePrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LensType" class="control-label"></label>
+                    <input asp-for="LensType" name="LensType" class="form-control" />
+                <span asp-validation-for="LensType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LensPrice" class="control-label"></label>
+                    <input asp-for="LensPrice" name="LensPrice" class="form-control" />
+                <span asp-validation-for="LensPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalPrice" class="control-label"></label>
+                    <input asp-for="TotalPrice" name="TotalPrice" class="form-control" />
+                <span asp-validation-for="TotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AmountPaid" class="control-label"></label>
+                    <input asp-for="AmountPaid" name="AmountPaid" class="form-control" />
+                <span asp-validation-for="AmountPaid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input type="date" asp-for="Date" name="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+}
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+@ViewBag.error
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

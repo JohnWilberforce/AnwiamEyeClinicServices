@@ -1,0 +1,80 @@
+﻿@model IEnumerable<AnwiamEyeClinicServices.Models.Opd>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="alert-primary" style="display:flex; justify-content:flex-end; border:solid 2px lightgrey;">
+
+   
+    <div class="alert-primary" style="font-weight:bolder;">
+        @using (Html.BeginForm("hxBtnDates", "CONSULT", FormMethod.Post))
+        {
+            <label>Start</label>
+            <input type="date" value="" placeholder="Start Date" style="border:solid lightblue 3px;border-radius:5px;" name="date1" />
+            <label>End</label>
+            <input type="date" value="" placeholder="End Date" style="border:solid lightblue 3px; border-radius:5px;" name="date2" />
+            <button class="btn btn-warning btn-lg btn-outline-light border-0" type="submit"><i class="fas fa-search" aria-hidden="true"></i></button>
+        }
+    </div>
+    <div class="alert-primary" style="margin-left:5%;">
+        @using (Html.BeginForm("PxHistory", "CONSULT", FormMethod.Post))
+        {
+            <input type="text" value="" placeholder="Enter Patient ID" style="border:solid lightblue 3px;border-radius:5px;" name="patientId" />
+            <button class="btn btn-warning btn-lg btn-outline-light border-0" type="submit"><i class="fas fa-search" aria-hidden="true"></i></button>
+        }
+    </div>
+</div>
+<br />
+<h5 style="text-align:center">Consultations: @DateTime.Now.GetDateTimeFormats('D')[0] </h5>
+
+<table class="table bg-light">
+    <thead class="accordion-header alert-primary">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PatientId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PatientName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                Status
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientName)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Date.GetDateTimeFormats()[0])
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+            <td>
+                    <button class="btn btn-success" ><a asp-action="Edit" asp-route-id="@item.Id" style="text-decoration:none; color:white;">
+                        Examine</a></button>
+                @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,79 @@
+﻿@model IEnumerable<AnwiamEyeClinicServices.Models.Pharmacy>
+
+@{
+    ViewData["Title"] = "Pharmacy";
+}
+<div class="alert-primary" style="font-weight:bolder;display:flex;justify-content:flex-end">
+    <h5 style="color:black; margin-right:40%">Pharmacy</h5>
+    @using (Html.BeginForm("pharmacyBtnDates", "CONSULT", FormMethod.Post))
+    {
+        <label style="color:black">Start</label>
+        <input type="date" value="" placeholder="Start Date" name="date1" style="border:solid lightblue 3px; border-radius:5px;" />
+        <label style="color:black">End</label>
+        <input type="date" value="" placeholder="End Date" name="date2" style="border:solid lightblue 3px; border-radius:5px;" />
+        <button type="submit" class="btn btn-primary">Patient Records</button>
+    }
+</div>
+<br />
+
+<table class="table bg-light">
+    <thead class="accordion-header alert-primary">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PatientId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PatientName)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Diagnosis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Medications)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>@Html.DisplayNameFor(model=>model.Status)</th>
+
+            
+            <th style="color:crimson">Dispensed?</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientName)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Diagnosis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Medications)
+            </td>
+            
+            <td>
+                    @Html.DisplayFor(modelItem => item.Date.Value.GetDateTimeFormats()[0])
+            </td>
+              <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                  @*<input type="checkbox" class="check"/>*@
+                            </td>
+                <td>
+                    <button class="btn btn-success">
+                        <a asp-action="PharmacyStatusUpdate" asp-route-id="@item.Id" style="text-decoration:none; color:white;">
+                            YES
+                        </a>
+                    </button>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

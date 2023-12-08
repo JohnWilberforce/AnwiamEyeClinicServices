@@ -1,0 +1,93 @@
+﻿@model IEnumerable<AnwiamEyeClinicServices.Models.PurchaseRefractionPx>
+
+@{
+    ViewData["Title"] = "GetRefractionsBtnDates";
+}
+
+<h5 style="text-align:center;font-weight:bold;">Refractions Between @ViewBag.date1 and @ViewBag.date2 </h5>
+
+<p>
+    <a asp-action="Create" style="text-decoration:none">Back</a>
+</p>
+<div class="card">
+    <table class="table bg-opacity-10">
+        <thead class="accordion-header alert-primary">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telephone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpectacleRx)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FrameType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FramePrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LensType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LensPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountPaid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telephone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpectacleRx)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FrameType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FramePrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LensType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LensPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmountPaid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date.Value.GetDateTimeFormats()[0])
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table>
+</div>

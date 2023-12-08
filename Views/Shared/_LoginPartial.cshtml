@@ -1,0 +1,181 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<ul class="navbar-nav">
+     @if (SignInManager.IsSignedIn(User))
+    {
+        @if (User.IsInRole("opd"))
+        {
+            //show services navigation
+
+            <ul class="navbar-nav flex-grow-1 navbar-collapse collapse d-sm-inline-flex" style="margin-left:-15%">
+
+                <li class="nav-item">
+                    <a class="nav-link navEFont" asp-area="" asp-controller="OPD" asp-action="Create">OPD</a>
+                </li>
+
+            </ul>
+
+            <li class="nav-item">
+                @{
+                    var user = (User.Identity?.Name);
+                   
+                }
+                <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name
+                </a>
+            </li>
+            <li class="nav-item">
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post" >
+                    <button type="submit" class="nav-link btn btn-link text-light btn-danger" style="color:white; border-radius:10px;margin-left:50%;">Logout</button>
+                </form>
+            </li>
+        }
+        @if (User.IsInRole("doctor"))
+        {
+            //show services navigation
+
+            <ul class="navbar-nav flex-grow-1 navbar-collapse collapse d-sm-inline-flex" style="margin-left:-15%">
+
+
+                <li class="nav-item">
+                    <a class="nav-link navEFont" asp-area="" asp-controller="CONSULT" asp-action="Index">CONSULTATION</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navEFont text-dark" asp-area="" asp-controller="Purchases" asp-action="Create">REFRACTION</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navEFont" asp-area="" asp-controller="OPD" asp-action="Create">OPD</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navEFont text-dark" asp-area="" asp-controller="VFT" asp-action="Create">VFT</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navEFont text-dark" asp-area="" asp-controller="OCT" asp-action="Create">OCT</a>
+                </li>
+
+            </ul>
+
+            <li class="nav-item">
+                @{
+                    var user = (User.Identity?.Name);
+                  
+                }
+                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                    Hello @User.Identity?.Name
+                </a>
+            </li>
+            <li class="nav-item">
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                    <button type="submit" class="nav-link btn btn-link text-light btn-danger" style="color:white; border-radius:10px;margin-left:50%;">Logout</button>
+                </form>
+            </li>
+        }
+        @if (User.IsInRole("admin"))
+        {
+            //show services navigation
+
+            <ul class="navbar-nav flex-grow-1 navbar-collapse collapse d-sm-inline-flex">
+
+                <li class="nav-item">
+                    <a class="nav-link navEFont" asp-area="" asp-controller="OPD" asp-action="Create">OPD</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navEFont" asp-area="" asp-controller="OPD" asp-action="AccountOpd">OPDAcc</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link navEFont" asp-area="" asp-controller="CONSULT" asp-action="Index">CONSULT</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navEFont text-dark" asp-area="" asp-controller="Purchases" asp-action="Create">REFRACTN</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navEFont text-dark" asp-area="" asp-controller="VFT" asp-action="Create">VFT</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navEFont text-dark" asp-area="" asp-controller="OCT" asp-action="Create">OCT</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navEFont text-dark" asp-area="" asp-controller="CONSULT" asp-action="PharmacyDlyRecords">PHARMACY</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navEFont text-dark" asp-area="" asp-controller="OCT" asp-action="GetTotals">TOTALS</a>
+                </li>
+            </ul>
+
+            <li class="nav-item">
+               
+                <span><a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                    Hello @User.Identity?.Name
+                    </a>
+                </span>
+            </li>
+            <li class="nav-item">
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                    <button type="submit" class="nav-link btn btn-link text-light btn-danger" style="color:white;margin-left:50%; border-radius:10px;margin-top:11%;">Logout</button>
+                </form>
+            </li>
+        }
+        @if (User.IsInRole("pharmacy"))
+        {
+            //show services navigation
+
+            <ul class="navbar-nav flex-grow-1 navbar-collapse collapse d-sm-inline-flex" style="margin-left:-15%">
+
+                <li class="nav-item">
+                    <a class="nav-link navEFont" asp-area="" asp-controller="CONSULT" asp-action="PharmacyDlyRecords">PHARMACY</a>
+                </li>
+
+            </ul>
+
+            <li class="nav-item">
+                
+                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                    Hello @User.Identity?.Name
+                </a>
+            </li>
+            <li class="nav-item">
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                    <button type="submit" class="nav-link btn btn-link text-light btn-danger" style="color:white; border-radius:10px;margin-left:50%">Logout</button>
+                </form>
+            </li>
+        }
+        @if (User.IsInRole("account"))
+        {
+            //show services navigation
+
+            <ul class="navbar-nav flex-grow-1 navbar-collapse collapse d-sm-inline-flex" style="margin-left:-15%">
+                <li class="nav-item">
+                    <a class="nav-link navEFont" asp-area="" asp-controller="OPD" asp-action="AccountOpd">OPD</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link navEFont text-dark" asp-area="" asp-controller="OCT" asp-action="GetTotals">TOTALS</a>
+                </li>
+            </ul>
+
+            <li class="nav-item">
+
+                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                    Hello @User.Identity?.Name
+                </a>
+            </li>
+            <li class="nav-item">
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                    <button type="submit" class="nav-link btn btn-link text-light btn-danger" style="color:white; border-radius:10px;">Logout</button>
+                </form>
+            </li>
+        }
+
+    }
+    else
+    {
+        @*<li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </li>*@
+        <li class="nav-item">
+            <button class="btn-secondary" style="color:white; border-radius:10px;"><a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login">Login</a></button>
+        </li>
+    }
+</ul>

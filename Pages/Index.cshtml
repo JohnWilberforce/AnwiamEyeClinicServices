@@ -1,0 +1,17 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+        @if (User.IsInRole("admin"))
+        {
+ <button class="btn btn-success d-inline-flex"><a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">
+        Register Users</a></button>
+        }
+      
+<div class="text-center">
+    <h3 class="display-6 overlay display-4" style="text-shadow:2px 2px 4px gray;">Your Vision Our Priority.</h3>
+    <div style="display:flex; justify-content:center;">
+        <img src="~/Images/ivue-oct.jpg" style="width:90%;height:450px;" />
+    </div>
+</div>

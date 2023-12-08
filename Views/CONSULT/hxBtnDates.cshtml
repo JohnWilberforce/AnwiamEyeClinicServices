@@ -1,0 +1,156 @@
+﻿@model IEnumerable<AnwiamEyeClinicServices.Models.Consultation>
+
+@{
+    ViewData["Title"] = "Records";
+}
+
+<h4 style="text-align:center;">Examination Records</h4>
+
+<p>
+    <a asp-controller="CONSULT" asp-action="Index">Back</a>
+</p>
+<table class="table bg-light">
+    <thead class="accordion-header alert-primary">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PatientId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PatientName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VisualAcuity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChiefComplaint)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PatientHistory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FamilyHistory)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Eyelids)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Conjunctiva)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cornea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pupils)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Media)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lens)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpticNerve)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fundus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Diagnosis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Medications)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpectacleRx)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Note)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PatientId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PatientName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VisualAcuity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ChiefComplaint)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PatientHistory)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FamilyHistory)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Eyelids)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Conjunctiva)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cornea)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pupils)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Media)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Lens)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OpticNerve)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fundus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Diagnosis)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Medications)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SpectacleRx)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Note)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date.Value.GetDateTimeFormats()[0])
+                    </td>
+
+
+                </tr>
+            }
+        }
+        @if (Model == null)
+        {
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td style="color:cadetblue; font-weight:bolder">No Data Found</td>
+            </tr>
+        }
+    </tbody>
+</table>

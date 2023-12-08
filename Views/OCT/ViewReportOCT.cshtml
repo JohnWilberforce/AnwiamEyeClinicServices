@@ -1,0 +1,60 @@
+﻿@model IEnumerable<AnwiamEyeClinicServices.Models.OCTreport>
+
+@{
+    ViewData["Title"] = "ViewReportOCT";
+}
+
+<h3 style="text-align:center">OCT Summary Report</h3>
+
+<p>
+    <a asp-action="Create" style="text-decoration:none; text-align:center;background-color:darkgoldenrod;
+width:40%; border-radius: 10px;padding:5px; font-weight:bolder; color:white;">Go Back</a>
+</p>
+<table class="table">
+    <thead class="accordion-header alert-primary">
+        <tr>
+            <th>
+                Doctor
+            </th>
+           
+            <th>
+                ONH Count
+            </th>
+            <th>
+                Macula Count
+            </th>
+            <th>
+                Pachymetry Count
+            </th>
+            <th>
+                Amount in GHS
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td>
+                   @Html.DisplayFor(modelItem => item.referredDrName)
+                </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.reFfacility)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.ONHcount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaculaCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PachCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table>

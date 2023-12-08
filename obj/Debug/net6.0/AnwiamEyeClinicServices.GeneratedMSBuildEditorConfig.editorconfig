@@ -1,0 +1,341 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = AnwiamEyeClinicServices
+build_property.RootNamespace = AnwiamEyeClinicServices
+build_property.ProjectDir = C:\Users\jache\Desktop\AnwiamEyeClinicServices\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\jache\Desktop\AnwiamEyeClinicServices
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Areas/Identity/Pages/Account/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Areas/Identity/Pages/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Areas/Identity/Pages/Account/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Areas/Identity/Pages/Account/Manage/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Areas/Identity/Pages/Account/Manage/SetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcU2V0UGFzc3dvcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX01hbmFnZU5hdi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Areas/Identity/Pages/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Areas/Identity/Pages/Account/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZXNldFBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Areas/Identity/Pages/Account/ResetPasswordConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZXNldFBhc3N3b3JkQ29uZmlybWF0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Areas/Identity/Pages/Account/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfVmlld0ltcG9ydHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Areas/Identity/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Areas/Identity/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Pages/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Pages/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/CONSULT/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ09OU1VMVFxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/CONSULT/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ09OU1VMVFxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/CONSULT/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ09OU1VMVFxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/CONSULT/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ09OU1VMVFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/CONSULT/hxBtnDates.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ09OU1VMVFxoeEJ0bkRhdGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/CONSULT/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ09OU1VMVFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/CONSULT/pharmacyBtnDates.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ09OU1VMVFxwaGFybWFjeUJ0bkRhdGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/CONSULT/PharmacyDlyRecords.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ09OU1VMVFxQaGFybWFjeURseVJlY29yZHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/CONSULT/PxHistory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ09OU1VMVFxQeEhpc3RvcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/CONSULT/success.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ09OU1VMVFxzdWNjZXNzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/OCT/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT0NUXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/OCT/DailyRecords.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT0NUXERhaWx5UmVjb3Jkcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/OCT/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT0NUXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/OCT/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT0NUXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/OCT/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT0NUXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/OCT/EditSuccess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT0NUXEVkaXRTdWNjZXNzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/OCT/GetTotals.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT0NUXEdldFRvdGFscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/OCT/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT0NUXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/OCT/OctRegistrySuccess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT0NUXE9jdFJlZ2lzdHJ5U3VjY2Vzcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/OCT/Totals.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT0NUXFRvdGFscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/OCT/ViewReportOCT.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT0NUXFZpZXdSZXBvcnRPQ1QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/OPD/AccountOpd.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT1BEXEFjY291bnRPcGQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/OPD/AccountOpd2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT1BEXEFjY291bnRPcGQyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/OPD/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT1BEXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/OPD/DailyRecords.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT1BEXERhaWx5UmVjb3Jkcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/OPD/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT1BEXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/OPD/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT1BEXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/OPD/error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT1BEXGVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/OPD/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT1BEXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/OPD/OnlyConsultationOpd.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT1BEXE9ubHlDb25zdWx0YXRpb25PcGQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/OPD/success.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT1BEXHN1Y2Nlc3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/OPD/successDelete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT1BEXHN1Y2Nlc3NEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/Purchases/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hhc2VzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/Purchases/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hhc2VzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/Purchases/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hhc2VzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/Purchases/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hhc2VzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/Purchases/GetRefractionsBtnDates.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hhc2VzXEdldFJlZnJhY3Rpb25zQnRuRGF0ZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/Purchases/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hhc2VzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/Purchases/purchase.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hhc2VzXHB1cmNoYXNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/Purchases/refractionBalPaymentSuccess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hhc2VzXHJlZnJhY3Rpb25CYWxQYXltZW50U3VjY2Vzcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/Purchases/SearchByName.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hhc2VzXFNlYXJjaEJ5TmFtZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/VFT/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVkZUXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/VFT/DailyRecords.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVkZUXERhaWx5UmVjb3Jkcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/VFT/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVkZUXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/VFT/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVkZUXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/VFT/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVkZUXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/VFT/EditSuccess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVkZUXEVkaXRTdWNjZXNzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/VFT/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVkZUXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/VFT/Search.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVkZUXFNlYXJjaC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/VFT/Success.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVkZUXFN1Y2Nlc3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/VFT/VftError.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVkZUXFZmdEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/VFT/ViewReportVFT.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVkZUXFZpZXdSZXBvcnRWRlQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-l7sthxxoak
+
+[C:/Users/jache/Desktop/AnwiamEyeClinicServices/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-siam3my22j

@@ -1,0 +1,71 @@
+html {
+  font-size: 14px;
+}
+body{
+    background-color:aliceblue;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+@keyframes fadeInOutAnimation {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+.changeColor{
+    background-color:mediumvioletred;
+    color:mediumvioletred;
+}
+.setimage {
+    background-image: url(../Images/ivue-oct.jpg);
+    height: 400px;
+    width: 100%;
+}
+.setimage2 {
+    background-color: floralwhite;
+    height: 100%;
+    width: 100%;
+}
+.fadeInOut {
+    animation-duration: 2s;
+    cursor: pointer;
+    animation: fadeInOutAnimation 1.5s infinite;
+    animation-direction: normal;
+    animation-timing-function: ease-in-out;
+    animation-duration: 2s;
+}
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+.overlay {
+    position: absolute;
+    top: 18%;
+    left: 48%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.navEFont {
+    font-weight: bolder;
+    font-family: Algerian;
+    /*border:solid white 1px;*/
+    margin-inline: 6px;
+    font-size: 1.1rem;
+    border-radius:5px;
+    background-color:lightskyblue
+}
+
+    .navEFont:hover {
+        background-color: lightgreen;
+        border-radius: 10px;
+    }

@@ -1,0 +1,48 @@
+﻿@model AnwiamEyeClinicServices.Models.Total
+
+<div>
+    <h4>Total</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            VFT Count :
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.VftCount)
+        </dd>
+        <dt class = "col-sm-2">
+            ONH Count :
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OnhCount)
+        </dd>
+        <dt class = "col-sm-2">
+            Macula Count :
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MaculaCount)
+        </dd>
+        <dt class = "col-sm-2">
+            Pachymetry Count :
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PachymetryCount)
+        </dd>
+        <dt class = "col-sm-2">
+            Total VFT Amount :
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.VftTotalAmount)
+        </dd>
+        <dt class = "col-sm-2">
+            Total OCT Amount :
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TotalOfOnhMacPachyAmount)
+        </dd>
+    </dl>
+</div>
+<div>
+
+    <a asp-action="Create">Back</a>
+</div>

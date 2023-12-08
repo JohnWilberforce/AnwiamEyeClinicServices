@@ -1,0 +1,142 @@
+﻿@model AnwiamEyeClinicServices.Models.PurchaseRefractionPx;
+
+@{
+    ViewData["Title"] = "Purchase";
+}
+<div class="d-flex justify-content-between">
+<div card d-inline-block>
+
+    <div class="text-dark alert-primary mb-3" style="width: 30rem; margin:auto;">
+        <div class="card-header bg-primary" style="font-weight:bolder;text-align:center; color:white;">Refraction Details</div>
+        <div class="card-body">
+<div class="row">
+                <div class="col-md-10" style="margin:auto;">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Patient Name</label>
+                                <input asp-for="Name" class="form-control" style="border:solid lightblue 2px; border-radius:5px;" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telephone" class="control-label">Phone Number</label>
+                                <input asp-for="Telephone" class="form-control" style="border:solid lightblue 2px; border-radius:5px;" />
+                <span asp-validation-for="Telephone" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="SpectacleRx" class="control-label">Prescription</label><br />
+                                <textarea asp-for="SpectacleRx" maxlength="200" style="border:solid lightblue 2px; border-radius:5px;"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FrameType" class="control-label"> Frame Type</label>
+                                <select asp-for="FrameType" class="form-control" style="border:solid lightblue 2px; border-radius:5px;">
+                    <option value="">--choose an option--</option>
+                    <option value="">NA</option>
+                                    <option value="Standard">Standard</option>
+                                    <option value="Delux">Deluxe</option>
+                                    <option value="Regular">Regular</option>
+
+                </select>
+                <span asp-validation-for="FrameType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FramePrice" class="control-label">Frame Price</label>
+                                <input asp-for="FramePrice" class="form-control" style="border:solid lightblue 2px; border-radius:5px;" />
+                <span asp-validation-for="FramePrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LensType" class="control-label">Lens Type</label>
+                                <input asp-for="LensType" class="form-control" placeholder="Ex. single vision white or photo" style="border:solid lightblue 2px; border-radius:5px;" />
+                <span asp-validation-for="LensType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LensPrice" class="control-label">Lens Price</label>
+                                <input asp-for="LensPrice" class="form-control" style="border:solid lightblue 2px; border-radius:5px;" />
+                <span asp-validation-for="LensPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalPrice" class="control-label">Total Price</label>
+                                <input asp-for="TotalPrice" class="form-control" style="border:solid lightblue 2px; border-radius:5px;" />
+                <span asp-validation-for="TotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AmountPaid" class="control-label">Amount Paid</label>
+                                <input asp-for="AmountPaid" class="form-control" style="border:solid lightblue 2px; border-radius:5px;" />
+                <span asp-validation-for="AmountPaid" class="text-danger"></span>
+            </div>
+                        <div class="form-group">
+                            <label asp-for="Quantity" class="control-label"></label>
+                                <input asp-for="Quantity" class="form-control" style="border:solid lightblue 2px; border-radius:5px;" />
+                            <span asp-validation-for="Quantity" class="text-danger"></span>
+                        </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                                <input type="date " asp-for="Date" class="form-control" style="border:solid lightblue 2px; border-radius:5px;" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Enter" class="btn btn-primary" />
+            </div>
+                            <h5>@ViewBag.error</h5>
+        </form>
+    
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="card d-inline-block text-dark alert-primary mb-3" style="width:30rem;margin-left:5%;">
+
+    <div class="card-header bg-primary" style="text-align:center;font-weight:bolder;background-color:lightblue; color:white;">Search By Patient Name </div>
+    <div class="card-body">
+        <p>
+
+            @using (Html.BeginForm("SearchByName", "Purchases", FormMethod.Post))
+            {
+                    <input type="text" value="" name="patientName" placeholder="Enter Full Name" style="border:solid lightblue 2px; border-radius:5px;" />
+                    <button class="btn btn-warning btn-lg btn-outline-light border-0" type="submit"><i class="fas fa-search" aria-hidden="true"></i></button>
+
+                }
+
+        </p>
+        <br />
+            <br />
+            <br />
+            <br />
+          
+                <div class="card" style="padding:4px; border:solid lightgray 0.5px;">
+                    <div class="card-header bg-primary" style="text-align:center;font-weight:bolder;color:white"> Refractions</div>
+                    <div class="card-body">
+                        @using (Html.BeginForm("GetRefractionsBtnDates", "Purchases", FormMethod.Post))
+                        {
+                            <div style="display:inline-flex;width:100%;justify-content:space-evenly">
+                                <div>
+                                    <label style="font-weight:bold">Start</label>
+                                    <input type="date" name="date1" style="border:solid lightblue 3px; border-radius:5px;" />
+                                </div>
+                                <div>
+                                    <label style="font-weight:bold">End</label>
+                                    <input type="date" name="date2" style="border:solid lightblue 3px; border-radius:5px;" />
+                                </div>
+                                <div style="margin-top:10px;">
+                                   
+                                    <button class="btn btn-warning btn-lg btn-outline-light border-0" type="submit"><i class="fas fa-search" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            
+        </div>
+</div>
+<div>
+    </div>
+    </div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
