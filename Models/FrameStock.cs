@@ -7,9 +7,7 @@ public partial class FrameStock
 {
     public int Id { get; set; }
 
-    public string? FrameTypeByColor { get; set; }
-
-    public decimal? Price { get; set; }
+    public string? FrameType { get; set; }
 
     public int? Quantity { get; set; }
 

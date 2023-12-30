@@ -1,0 +1,60 @@
+﻿@model IEnumerable<AnwiamEyeClinicServices.Models.RevenueServices>
+
+@{
+    ViewData["Title"] = "FrameSalesFromConsult";
+}
+
+<h5>Confirm Payments For Frames</h5>
+<p>
+    <a  asp-controller="OPD" asp-action="OpdHome">Back</a>
+</p>
+<table class="table">
+    <thead class="accordion-header alert-primary">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PatientName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Services)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th style="background-color:crimson; color:white;">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Services)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td style="color:crimson;">
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date.GetDateTimeFormats()[0])
+            </td>
+            <td>
+                    <button class="btn btn-success">
+                        <a asp-controller="Purchases" asp-action="FramePaymentOPD" asp-route-id="@item.Id" style="text-decoration:none; color:white;">
+                            Confirm
+                        </a>
+                    </button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

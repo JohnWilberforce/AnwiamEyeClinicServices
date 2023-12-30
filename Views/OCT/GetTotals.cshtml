@@ -2,12 +2,12 @@
 
 
 
-<div class="card" style="padding:4px; border:solid lightgray 0.5px;">
+<div class="card" style="padding:4px; border:solid lightgray 0.5px;width:50%;margin-left:auto;margin-right:auto;">
     <div class="card-header bg-primary" style="text-align:center;font-weight:bolder;color:white;"> MONTHLY TOTALS</div>
     <div class="card-body">
         @using (Html.BeginForm("Totals", "OCT", FormMethod.Post))
         {
-            <div style="display:inline-flex;width:400px;justify-content:space-evenly">
+            <div style="display:inline-flex;justify-content:space-evenly">
                 <div style="width:150px;">
                     <span style="font-weight:bold; margin-left:30%;">Start</span>
 
@@ -26,15 +26,19 @@
     </div>
 </div>
 <br />
-<div class="card" style="width:40%;">
+<div class="card" style="width:50%; margin-left:auto; margin-right:auto;">
     <div class="card-header bg-info" style="font-weight:bold;text-align:center;"> TOTALS @ViewBag.b <span style="color:chocolate;">@ViewBag.stDate</span> @ViewBag.a <span style="color:chocolate;">@ViewBag.eDate</span></div>
     <div class="card-body">
-        VFT Count:    @ViewBag.VftCount <br /><hr />
-            ONH Count:    @ViewBag.OnhCount <br /><hr />
-        Macula Count: @ViewBag.MaculaCount <br /><hr />
-        Pachymetry Count: @ViewBag.PachymetryCount <br /><hr />
-        Total VFT Amount: Ghs @ViewBag.VftTotalAmount <br /><hr />
-        Total OCT Amount: Ghs <span>@ViewBag.TotalOfOnhMacPachyAmount</span> <br />
+        VFT Count:    @ViewBag.VftCount <hr />
+            ONH Count:    @ViewBag.OnhCount <hr />
+        Macula Count: @ViewBag.MaculaCount <hr />
+        Pachymetry Count: @ViewBag.PachymetryCount <hr />
+        Retinal Imaging Count: @ViewBag.RetImage<hr />
+        <h6 class="alert-primary" style="text-align:center;padding:5px;font-weight:bold;">Total Amount</h6>
+        <span style="color:forestgreen;font-weight:bold;">Total VFT Amount</span>: <span style="font-weight:bold;">Ghs @ViewBag.VftTotalAmount.00</span><hr />
+        <span style="color:forestgreen;font-weight:bold;">Total OCT Amount</span>(ONH/Macula/Pachymetry): <span style="font-weight:bold;">Ghc @ViewBag.TotalOfOnhMacPachyAmount.00</span> <hr />
+        <span style="color:forestgreen;font-weight:bold;">Total Retinal Imaging Amount</span>: <span style="font-weight:bold;">Ghc @ViewBag.RetImageTotalAmount.00</span>
+        
     </div>
 </div>
 

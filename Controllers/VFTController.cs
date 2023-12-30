@@ -34,6 +34,16 @@ namespace AnwiamEyeClinicServices.Controllers
                         Problem("Entity set 'VFT_OCTContext.Vfts'  is null.");
         }
 
+        public async Task<IActionResult> VFTfromRevenue()
+        {
+            var formattedData = DateTime.Now.Date;
+            var l1 = await _context.RevenueServicies.Where(x => x.Services.Contains("VFT")).ToListAsync();
+            var l2= l1.Where(x => x.Date == formattedData).ToList();
+            return _context.RevenueServicies != null ?
+                        View(l2) :
+                        Problem("Entity set 'VFT_OCTContext.Vfts'  is null.");
+
+        }
         // GET: VFT/Details/5
         public async Task<IActionResult> Details(string id)
         {

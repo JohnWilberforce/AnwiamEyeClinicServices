@@ -1,64 +1,73 @@
-﻿@model IEnumerable<AnwiamEyeClinicServices.Models.Opd>
+﻿@model List<AnwiamEyeClinicServices.Models.Opd>
 
 @{
     ViewData["Title"] = "OnlyConsultationOpd";
 }
+<div class="d-flex justify-content-around">
+    <p style="margin-right:5%">
+        <a asp-action="AccountOpd" style="text-decoration:none; text-align:center;background-color:seagreen;
+border-radius: 10px;padding:5px; font-weight:bolder; color:white;"><i class="fas fa-arrow-left"></i>Back</a>
+    </p>
+    <h4 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight:bolder">
+        OPD Consultations From "@ViewBag.stDate" to "@ViewBag.eDate"</h4>
 
-<h4>OPD Consultations</h4>
+    <h4 style="margin-left:5%"> <span style="background-color:seagreen; border-end-end-radius:10px;">Total Amount</span> : Gh @ViewBag.Amount </h4>
+</div>
 
-<p>
-    <a asp-action="AccountOpd">Back</a>
-</p>
 <table class="table bg-light">
     <thead class="alert-primary">
         <tr>
+            <th></th>
             <th>
-                @Html.DisplayNameFor(model => model.PatientId)
+               PatientId
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PatientName)
+                PatientName
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Address)
+                Address
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Contact)
+                Contact
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Services)
+                Services
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Amount)
+                Amount
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Date)
+                Date
             </th>
           
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
+        @for (var i = 0; i < @ViewBag.counter; i++) {
+            <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.PatientId)
+                @(i+1)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PatientName)
+                @(Model[i].PatientId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Address)
+                @(Model[i].PatientName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Contact)
+                    @(Model[i].Address)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Services)
+                    @(Model[i].Contact)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Amount)
+                    @(Model[i].Services)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Date.GetDateTimeFormats()[0])
+                    @(Model[i].Amount)
+            </td>
+            <td>
+                    @(Model[i].Date.GetDateTimeFormats()[0])
             </td>
            
 

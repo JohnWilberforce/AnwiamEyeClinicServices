@@ -1,0 +1,47 @@
+﻿@model IEnumerable<AnwiamEyeClinicServices.Models.ImageReport>
+
+@{
+    ViewData["Title"] = "ViewReportImaging";
+}
+
+<h5 style ="text-align:center;"> Summary Report</h5>
+<p style="margin-right:10%">
+    <a asp-action="Create" style="text-decoration:none; text-align:center;background-color:seagreen;
+width:40%; border-radius: 10px;padding:5px; font-weight:bolder; color:white;"><i class="fas fa-arrow-left"></i>Back</a>
+</p>
+<table class="table">
+    <thead class="accordion-header alert-primary">
+        <tr>
+            <th>
+                Doctor
+            </th>
+            <th>
+                Total Retinal Image Referrals
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.referredDrName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalRetinalImagesReferrals)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            @*<td>
+                <a asp-action="Edit" asp-route-id="@item.referredDrName">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.referredDrName">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.referredDrName">Delete</a>
+            </td>*@
+        </tr>
+}
+    </tbody>
+</table>

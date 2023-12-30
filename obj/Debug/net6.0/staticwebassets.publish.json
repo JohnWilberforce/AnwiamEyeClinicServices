@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "T1caUT8NEK9wlxNvkTLs8jMibvKk07LbLNQIhjTSgmk=",
+  "Hash": "PzFe2NaVphSzW+Xv7IEi3yk1HcF7hpJ9WjQxaNg2gxw=",
   "Source": "AnwiamEyeClinicServices",
   "BasePath": "_content/AnwiamEyeClinicServices",
   "Mode": "Default",
@@ -1103,6 +1103,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\jache\\Desktop\\AnwiamEyeClinicServices\\wwwroot\\Images\\background.jpg",
+      "SourceId": "AnwiamEyeClinicServices",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\jache\\Desktop\\AnwiamEyeClinicServices\\wwwroot\\",
+      "BasePath": "_content/AnwiamEyeClinicServices",
+      "RelativePath": "Images/background.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\background.jpg"
     },
     {
       "Identity": "C:\\Users\\jache\\Desktop\\AnwiamEyeClinicServices\\wwwroot\\Images\\ivue-oct.jpg",

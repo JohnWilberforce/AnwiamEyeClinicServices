@@ -34,12 +34,29 @@ namespace AnwiamEyeClinicServices.Controllers
         {
             return View();
         }
+        public async Task<IActionResult> OCTfromRevenue()
+        {
+            var formattedData = DateTime.Now.Date;
+            var l1 = await _context.RevenueServicies.Where(x => x.Services.Contains("OCT") || x.Services.Contains("Pachymetry")
+                        || x.Services.Contains("Macula")).ToListAsync();
+            var l2=l1.Where(x=>x.Date==formattedData).ToList(); 
+            return _context.RevenueServicies != null ?
+                        View(l2)
+                        :
+                        Problem("Entity set 'VFT_OCTContext.Vfts'  is null.");
+
+        }
         [HttpPost]
         public ViewResult Totals(DateTime stDate, DateTime eDate)
         {
             Total? total=new Total();
             total=_context.Totals.FromSqlInterpolated($"select * from ufn_totals({stDate}, {eDate})").FirstOrDefault();
-
+            var ret = _context.RetinalImages.Where(x => x.date>=stDate && x.date<=eDate).ToList();
+            var retCount=0;
+            if (ret != null)
+            {
+                retCount = ret.Count();
+            }
             if (total != null)
             {
                 ViewBag.VftCount = total.VftCount;
@@ -53,6 +70,8 @@ namespace AnwiamEyeClinicServices.Controllers
                 ViewBag.eDate = eDate.ToString("M-d-yyyy");
                 ViewBag.b = "between";
                 ViewBag.a = "and";
+                ViewBag.RetImage = retCount;
+                ViewBag.RetImageTotalAmount = retCount * 10;
                 return View("GetTotals");
             }
             

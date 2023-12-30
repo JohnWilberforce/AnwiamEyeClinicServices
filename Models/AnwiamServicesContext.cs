@@ -23,6 +23,9 @@ public partial class AnwiamServicesContext : DbContext
     public virtual DbSet<Oct> Octs { get; set; }
 
     public virtual DbSet<Opd> Opds { get; set; }
+    public virtual DbSet<RevenueServices> RevenueServicies { get; set; }
+    public virtual DbSet<OPDConsultStatus> OPDConsultStatuses { get; set; }
+    public virtual DbSet<ImageReport> ImageReports { get; set; }
 
     public virtual DbSet<Purchase> Purchases { get; set; }
 
@@ -32,6 +35,7 @@ public partial class AnwiamServicesContext : DbContext
     public virtual DbSet<Total> Totals { get; set; }
     public virtual DbSet<PurchaseRefractionPx> PurchaseRefractionPxes { get; set; } = null!;
     public virtual DbSet<Pharmacy> Pharmacys { get; set; }
+    public virtual DbSet<RetinalImage> RetinalImages { get; set; }
 
 
     public virtual DbSet<Vft> Vfts { get; set; }
@@ -59,6 +63,12 @@ public partial class AnwiamServicesContext : DbContext
         {
 
             entity.ToTable("Pharmacy");
+        });
+        modelBuilder.Entity<RetinalImage>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity.ToTable("RetinalImage");
         });
             modelBuilder.Entity<Consultation>(entity =>
         {
@@ -117,11 +127,10 @@ public partial class AnwiamServicesContext : DbContext
             entity.Property(e => e.Date)
                 .HasColumnType("datetime")
                 .HasColumnName("date");
-            entity.Property(e => e.FrameTypeByColor)
-                .HasMaxLength(10)
+            entity.Property(e => e.FrameType)
+                .HasMaxLength(30)
                 .IsUnicode(false);
             entity.Property(e => e.Id).ValueGeneratedOnAdd();
-            entity.Property(e => e.Price).HasColumnType("decimal(18, 0)");
         });
 
         modelBuilder.Entity<Oct>(entity =>
@@ -179,6 +188,57 @@ public partial class AnwiamServicesContext : DbContext
                 .IsUnicode(false);
             entity.Property(e => e.PatientName)
                 .HasMaxLength(100)
+                .IsRequired()
+                .IsUnicode(false);
+            entity.Property(e => e.Services)
+                .HasMaxLength(120)
+                .IsUnicode(false);
+        });
+        modelBuilder.Entity<RevenueServices>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity.ToTable("RevenueServices");
+
+
+            entity.Property(e => e.Amount).HasColumnType("decimal(18, 0)");
+
+            entity.Property(e => e.Date)
+                .HasMaxLength(20)
+                .IsUnicode(false);
+            entity.Property(e => e.PatientName)
+                .HasMaxLength(100)
+                .IsRequired()
+                .IsUnicode(false);
+            entity.Property(e => e.Services)
+                .HasMaxLength(120)
+                .IsUnicode(false);
+            entity.Property(e => e.Status)
+    .HasMaxLength(15)
+    .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<OPDConsultStatus>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity.ToTable("OPDConsultStatus");
+
+            entity.Property(e => e.Address)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.Amount).HasColumnType("decimal(18, 0)");
+            entity.Property(e => e.Contact).HasMaxLength(15);
+            entity.Property(e => e.Status).HasMaxLength(15);
+            entity.Property(e => e.Date)
+                .HasMaxLength(20)
+                .IsUnicode(false);
+            entity.Property(e => e.PatientId)
+                .HasMaxLength(30)
+                .IsUnicode(false);
+            entity.Property(e => e.PatientName)
+                .HasMaxLength(100)
+                .IsRequired()
                 .IsUnicode(false);
             entity.Property(e => e.Services)
                 .HasMaxLength(120)

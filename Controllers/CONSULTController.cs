@@ -27,7 +27,7 @@ namespace AnwiamEyeClinicServices.Controllers
         {
             var formattedData = DateTime.Now.Date;
               return _context.Opds != null ? 
-                          View(_context.Opds.Where(x=>x.Date==formattedData && x.Services.Contains("Consultation")).ToList()) :
+                          View(_context.OPDConsultStatuses.Where(x=>x.Date==formattedData && x.Services.Contains("Consultation")).ToList()) :
                           Problem("Entity set 'AnwiamServicesContext.Consultations'  is null.");
         }
         [HttpPost]
@@ -58,7 +58,7 @@ namespace AnwiamEyeClinicServices.Controllers
             List<Consultation>? result = null;
             try
             {
-                result = _context.Consultations.Where(x => x.PatientId == patientId).ToList();
+                result = _context.Consultations.Where(x => x.PatientId.ToLower() == patientId.ToLower()).ToList();
                 if (result != null)
                 {
                     return View(result);
@@ -145,11 +145,14 @@ namespace AnwiamEyeClinicServices.Controllers
         public ViewResult pharmacyBtnDates(DateTime date1, DateTime date2)
         {
             List<Pharmacy> cons = null;
+            ViewBag.stDate = date1.ToString("MMM-dd").ToUpper();
+            ViewBag.eDate = date2.ToString("MMM-dd").ToUpper();
             try
             {
                 cons = _context.Pharmacys.Where(x => x.Date >= date1 && x.Date <= date2).ToList();
                 if (cons != null)
                 {
+                    ViewBag.counter = cons.Count();
                     return View(cons);
                 }
                 return View(cons);
@@ -163,12 +166,12 @@ namespace AnwiamEyeClinicServices.Controllers
         // GET: CONSULT/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Opds == null)
+            if (id == null || _context.OPDConsultStatuses == null)
             {
                 return NotFound();
             }
 
-            var opdToConsultation = await _context.Opds.FindAsync(id);
+            var opdToConsultation = await _context.OPDConsultStatuses.FindAsync(id);
             if (opdToConsultation == null)
             {
                 return NotFound();
@@ -209,14 +212,14 @@ namespace AnwiamEyeClinicServices.Controllers
                         _context.Pharmacys.Add(p);
                         await _context.SaveChangesAsync();
                     }
-                    Opd? pxRecord = null;
+                OPDConsultStatus? pxRecord = null;
                     try {
                         
-                            pxRecord = _context.Opds.Where(x => x.PatientId == consultation.PatientId).FirstOrDefault();
+                            pxRecord = _context.OPDConsultStatuses.Where(x => x.PatientId == consultation.PatientId).FirstOrDefault();
                             if (pxRecord != null)
                             {
                                 pxRecord.Status = "Seen";
-                                _context.Opds.Update(pxRecord);
+                                _context.OPDConsultStatuses.Update(pxRecord);
                                 _context.SaveChanges();
                             }
                        

@@ -3,7 +3,7 @@
 *@
 @{
 }
-<br /><br />
+
 <div class="card col-md-6" style="padding:4px; border:solid lightgray 0.5px;margin:auto;">
     <div class="card-header bg-primary" style="text-align:center;font-weight:bolder;"> ALL OPD Cases</div>
     <div class="card-body">
@@ -29,11 +29,35 @@
     </div>
 </div>
 <br />
-<br />
 <div class="card col-md-6" style="padding:4px; border:solid lightgray 0.5px;margin:auto;">
     <div class="card-header bg-primary" style="text-align:center;font-weight:bolder;"> OPD Consultations</div>
     <div class="card-body">
         @using (Html.BeginForm("OnlyConsultationOpd", "OPD", FormMethod.Post))
+        {
+            <div style="display:inline-flex;justify-content:space-evenly">
+                <div>
+                    <span style="font-weight:bold; margin-left:30%;">Start</span>
+
+                    <input type="date" name="stDate" class="form-control" id="autoSizingInput" placeholder="Start Date" style="border:solid lightblue 3px; border-radius:5px;">
+
+                </div>
+                <div>
+                    <span style="font-weight:bold;margin-left:30%;">End</span>
+
+                    <input type="date" name="eDate" class="form-control" id="autoSizingInputGroup" placeholder="End Date" style="border:solid lightblue 3px; border-radius:5px;">
+
+                </div>
+                <div></div>
+                <button class="btn btn-warning btn-lg btn-outline-light border-0" type="submit" style="margin-left: 20px;"><i class="fas fa-search" aria-hidden="true"></i></button>
+            </div>
+        }
+    </div>
+</div>
+<br />
+<div class="card col-md-6" style="padding:4px; border:solid lightgray 0.5px;margin:auto;">
+    <div class="card-header bg-primary" style="text-align:center;font-weight:bolder;"> OPD Frame Sales</div>
+    <div class="card-body">
+        @using (Html.BeginForm("FrameSales", "OPD", FormMethod.Post))
         {
             <div style="display:inline-flex;justify-content:space-evenly">
                 <div>

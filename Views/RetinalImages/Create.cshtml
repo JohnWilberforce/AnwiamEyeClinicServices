@@ -1,0 +1,109 @@
+﻿@model AnwiamEyeClinicServices.Models.RetinalImage
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<div class="d-flex justify-content-between">
+    <h4 style="text-align:center;font-weight:bold;color:chocolate;">Retinal Imaging</h4>
+    <a asp-action="RetImagefromRevenue" asp-controller="RetinalImages">
+        <button type="submit" class="btn btn-primary">Validate Patient</button>
+    </a>
+</div>
+<hr />
+<div class="d-flex justify-content-between">
+    <div card d-inline-block style="box-shadow:5px 0px 10px 0px lightgrey;">
+
+    <div class="text-dark alert-primary mb-3" style="width: 25rem; margin:auto;">
+            <div class="card-header d-inline-flex justify-content-start bg-primary" style="width:25rem;">
+                    <a asp-action="Create"><button class="btn-warning" style="border-radius:5px;">Refresh</button></a>
+
+                    <h6 style="text-align:center;color:white;margin-left:4%">Retina Imaging </h6>
+                </div>
+            <div class="card-body">
+            <div class="row">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="scanId" class="control-label"></label>
+                            <input asp-for="scanId" class="form-control" style="border:solid lightblue 3px; border-radius:5px;" />
+                <span asp-validation-for="scanId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                        <label asp-for="patientName" class="control-label">Patient Name</label>
+                            <input asp-for="patientName" class="form-control" style="border:solid lightblue 3px; border-radius:5px;" />
+                <span asp-validation-for="patientName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                        <label asp-for="referredDrName" class="control-label">referring Dr Name</label>
+                            <input asp-for="referredDrName" class="form-control" style="border:solid lightblue 3px; border-radius:5px;" />
+                <span asp-validation-for="referredDrName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="reFfacility" class="control-label">Facility</label>
+                            <input asp-for="reFfacility" class="form-control" style="border:solid lightblue 3px; border-radius:5px;" />
+                <span asp-validation-for="reFfacility" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="date" class="control-label"></label>
+                            <input type="date" asp-for="date" class="form-control" style="border:solid lightblue 3px; border-radius:5px;" />
+                <span asp-validation-for="date" class="text-danger"></span>
+            </div>
+                        <div class="form-group d-inline-flex">
+                            <input type="submit" value="Create" class="btn btn-primary" style="margin-right:30px;" />
+                            <h5 class="fadeInOut" style="animation-duration: 2s; color:crimson;">
+                                @ViewBag.success
+                            </h5>
+            </div>
+        </form>
+    </div>
+    </div>
+</div>
+</div>
+    <div class="card d-inline-block text-dark alert-primary mb-3" style="width:30rem;height:350px;box-shadow:5px 0px 10px 0px lightgrey;">
+
+    <div class="card-header bg-primary" style="text-align:center;font-weight:bolder;background-color:lightblue;color:white;">Daily Records</div>
+    <div class="card-body">
+        <p>
+
+            @using (Html.BeginForm("DailyRecords", "RetinalImages", FormMethod.Post))
+            {
+                    <input type="date" value="" name="date1" style="border:solid lightblue 3px; border-radius:5px;" />
+                <button type="submit" class="btn btn-primary">Daily Records</button>
+            }
+
+        </p>
+        <br />
+
+        <div class="card" style="padding:4px; border:solid lightgray 0.5px;">
+            <div class="card-header bg-primary" style="text-align:center;font-weight:bolder;color:white;"> Generate Report</div>
+            <div class="card-body">
+                    @using (Html.BeginForm("ViewReportImaging", "RetinalImages", FormMethod.Post))
+                {
+                    <div style="display:inline-flex;width:400px;justify-content:space-evenly">
+                        <div style="width:150px;">
+                            <span style="font-weight:bold;">Start</span>
+
+                            <input type="date" name="stDate" class="form-control" id="autoSizingInput" placeholder="Start Date" style="border:solid lightblue 3px; border-radius:5px;">
+
+                        </div>
+                        <div style="width:150px;">
+                            <span style="font-weight:bold;">End</span>
+
+                            <input type="date" name="eDate" class="form-control" id="autoSizingInputGroup" placeholder="End Date" style="border:solid lightblue 3px; border-radius:5px;">
+
+                        </div>
+                        <button type="submit" style="font-weight:bolder;margin-left:4%;padding:2px; border-radius:10px;" class="btn-warning">Generate Report</button>
+                    </div>
+                }
+            </div>
+        </div>
+
+
+    </div>
+
+
+    @section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

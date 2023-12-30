@@ -4,10 +4,18 @@
     ViewData["Title"] = "GetRefractionsBtnDates";
 }
 
-<h5 style="text-align:center;font-weight:bold;">Refractions Between @ViewBag.date1 and @ViewBag.date2 </h5>
-
-<p>
-    <a asp-action="Create" style="text-decoration:none">Back</a>
+<div class="d-flex justify-content-lg-start">
+    <p style="margin-right:10%">
+        <a asp-action="Create" style="text-decoration:none; text-align:center;background-color:seagreen;
+width:40%; border-radius: 10px;padding:5px; font-weight:bolder; color:white;"><i class="fas fa-arrow-left"></i>Back</a>
+    </p>
+    <h4 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight:bolder">Refractions Between @ViewBag.date1 and @ViewBag.date2 </h4>
+</div>
+<p style="background-color:goldenrod; text-align:center;padding:4px;border-end-start-radius:10px;">
+    <span style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight:bolder">Total Sales Amount :</span> Gh <span style="color:crimson;font-weight:bold;">@ViewBag.sumSales</span> |
+    <span style="font-family:'Gill Sans', 'Gill Sans MT' , Calibri, 'Trebuchet MS' , sans-serif; font-weight:bolder">Total Amount Paid by Patients :</span> Gh <span style="color:crimson;font-weight:bold;">@ViewBag.sumPaid</span>
+    |
+    <span style="font-family:'Gill Sans', 'Gill Sans MT' , Calibri, 'Trebuchet MS' , sans-serif; font-weight:bolder">Total Frame Sales at OPD :</span> Gh <span style="color:crimson;font-weight:bold;">@ViewBag.OPDFrameSales</span>
 </p>
 <div class="card">
     <table class="table bg-opacity-10">

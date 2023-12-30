@@ -1,0 +1,64 @@
+﻿@model IEnumerable<AnwiamEyeClinicServices.Models.RetinalImage>
+
+@{
+    ViewData["Title"] = "DailyRecords";
+}
+
+<h5>
+    Retinal Imaging Records For @ViewBag.today
+</h5>
+<div style="display:flex;">
+    <p style="margin-right:10%">
+        <a asp-action="Create" style="text-decoration:none; text-align:center;background-color:seagreen;
+width:40%; border-radius: 10px;padding:5px; font-weight:bolder; color:white;"><i class="fas fa-arrow-left"></i>Back</a>
+    </p>
+</div>
+<br />
+<table class="table">
+    <thead class="accordion-header alert-primary">
+        <tr>
+            <th>
+                ScanId
+            </th>
+            <th>
+                Patient Name
+            </th>
+            <th>
+                Referring Dr Name
+            </th>
+            <th>
+                Facility
+            </th>
+            <th>
+                Date
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.scanId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.patientName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.referredDrName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.reFfacility)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date.Value.GetDateTimeFormats()[0])
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+@*                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

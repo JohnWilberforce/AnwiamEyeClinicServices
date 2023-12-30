@@ -22,8 +22,8 @@
                     var user = (User.Identity?.Name);
                    
                 }
-                <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name
-                </a>
+                <p  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name
+                </p>
             </li>
             <li class="nav-item">
                 <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post" >
@@ -35,23 +35,24 @@
         {
             //show services navigation
 
-            <ul class="navbar-nav flex-grow-1 navbar-collapse collapse d-sm-inline-flex" style="margin-left:-15%">
+            <ul class="navbar-nav flex-grow-1 navbar-collapse collapse d-sm-inline-flex">
 
 
                 <li class="nav-item">
-                    <a class="nav-link navEFont" asp-area="" asp-controller="CONSULT" asp-action="Index">CONSULTATION</a>
+                    <a class="nav-link navEFont text-dark" asp-area="" asp-controller="CONSULT" asp-action="Index">CONSULTATION</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link navEFont text-dark" asp-area="" asp-controller="Purchases" asp-action="Create">REFRACTION</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link navEFont" asp-area="" asp-controller="OPD" asp-action="Create">OPD</a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link navEFont text-dark" asp-area="" asp-controller="VFT" asp-action="Create">VFT</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link navEFont text-dark" asp-area="" asp-controller="OCT" asp-action="Create">OCT</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navEFont text-dark" asp-area="" asp-controller="RetinalImages" asp-action="Create">Retina Image</a>
                 </li>
 
             </ul>
@@ -61,9 +62,9 @@
                     var user = (User.Identity?.Name);
                   
                 }
-                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                <p class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
                     Hello @User.Identity?.Name
-                </a>
+                </p>
             </li>
             <li class="nav-item">
                 <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
@@ -80,15 +81,18 @@
                 <li class="nav-item">
                     <a class="nav-link navEFont" asp-area="" asp-controller="OPD" asp-action="Create">OPD</a>
                 </li>
+                @*<li class="nav-item">
+                    <a class="nav-link navEFont text-dark" asp-area="" asp-controller="OPD" asp-action="OpdHome">Revenue</a>
+        </li>*@
                 <li class="nav-item">
                     <a class="nav-link navEFont" asp-area="" asp-controller="OPD" asp-action="AccountOpd">OPDAcc</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link navEFont" asp-area="" asp-controller="CONSULT" asp-action="Index">CONSULT</a>
+                    <a class="nav-link navEFont text-dark" asp-area="" asp-controller="CONSULT" asp-action="Index">CONS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link navEFont text-dark" asp-area="" asp-controller="Purchases" asp-action="Create">REFRACTN</a>
+                    <a class="nav-link navEFont text-dark" asp-area="" asp-controller="Purchases" asp-action="Create">REFR</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link navEFont text-dark" asp-area="" asp-controller="VFT" asp-action="Create">VFT</a>
@@ -97,10 +101,13 @@
                     <a class="nav-link navEFont text-dark" asp-area="" asp-controller="OCT" asp-action="Create">OCT</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link navEFont text-dark" asp-area="" asp-controller="CONSULT" asp-action="PharmacyDlyRecords">PHARMACY</a>
+                    <a class="nav-link navEFont text-dark" asp-area="" asp-controller="RetinalImages" asp-action="Create">Ret</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link navEFont text-dark" asp-area="" asp-controller="OCT" asp-action="GetTotals">TOTALS</a>
+                    <a class="nav-link navEFont text-dark" asp-area="" asp-controller="CONSULT" asp-action="PharmacyDlyRecords">PH</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navEFont text-dark" asp-area="" asp-controller="OCT" asp-action="GetTotals">Totals</a>
                 </li>
             </ul>
 
@@ -131,9 +138,9 @@
 
             <li class="nav-item">
                 
-                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                <p class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
                     Hello @User.Identity?.Name
-                </a>
+                </p>
             </li>
             <li class="nav-item">
                 <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
@@ -141,6 +148,36 @@
                 </form>
             </li>
         }
+        @if (User.IsInRole("revenue"))
+        {
+            //show services navigation
+
+            <ul class="navbar-nav flex-grow-1 navbar-collapse collapse d-sm-inline-flex">
+                <li class="nav-item">
+                    <a class="nav-link navEFont text-dark" asp-area="" asp-controller="OPD" asp-action="OpdHome">Revenue</a>
+                </li>
+
+            </ul>
+
+            <li class="nav-item">
+                @{
+                    var user = (User.Identity?.Name);
+                    //var l = user.Length;
+                    //var m = user.IndexOf('@');
+                }
+                <span>
+                    <p class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                        Hello @User.Identity?.Name
+                    </p>
+                </span>
+            </li>
+            <li class="nav-item">
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                    <button type="submit" class="nav-link btn btn-link text-light btn-danger" style="color:white;margin-left:50%;margin-top:11%; border-radius:10px;">Logout</button>
+                </form>
+            </li>
+        }
+
         @if (User.IsInRole("account"))
         {
             //show services navigation
@@ -157,9 +194,9 @@
 
             <li class="nav-item">
 
-                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                <p class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
                     Hello @User.Identity?.Name
-                </a>
+                </p>
             </li>
             <li class="nav-item">
                 <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">

@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using AnwiamEyeClinicServices.Models;
 using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore;
-
+using System.Linq;
+using Microsoft.IdentityModel.Tokens;
 
 namespace AnwiamEyeClinicServices.Controllers
 {
@@ -20,10 +21,18 @@ namespace AnwiamEyeClinicServices.Controllers
         // GET: OPDController
         public ActionResult Index()
         {
-            return View();
+            var formattedData = DateTime.Now.Date;
+            return servicesContext.Opds != null ?
+                        View(servicesContext.Opds.Where(x => x.Date == formattedData && x.Services.Contains("Consultation")).
+                        ToList().OrderByDescending(x=>x.Id)) :
+                        Problem("Entity set 'AnwiamServicesContext.Consultations'  is null.");
         }
 
         // GET: OPDController/Details/5
+        public ViewResult OpdHome()
+        {
+            return View();
+        }
         public ActionResult Details(int id)
         {
             return View();
@@ -36,6 +45,7 @@ namespace AnwiamEyeClinicServices.Controllers
             ViewBag.success = "";
             return View();
         }
+
         public ActionResult AccountOpd()
         {
             return View();
@@ -44,11 +54,14 @@ namespace AnwiamEyeClinicServices.Controllers
         public ActionResult AccountOpd2(DateTime stDate, DateTime eDate)
         {
             List<Opd> opd = null;
+            ViewBag.stDate = stDate.ToString("MMM-dd").ToUpper();
+            ViewBag.eDate = eDate.ToString("MMM-dd").ToUpper();
             try
             {
                 opd = servicesContext.Opds.Where(x => x.Date >= stDate && x.Date <= eDate).ToList();
                 if (opd != null)
                 {
+                    ViewBag.counter=opd.Count();
                     return View(opd);
                 }
                 return View(opd);
@@ -60,14 +73,45 @@ namespace AnwiamEyeClinicServices.Controllers
             }
         }
         [HttpPost]
+        public ActionResult FrameSales(DateTime stDate, DateTime eDate)
+        {
+            List<Opd>? opd = null;
+            List<Opd>? opd2 = null;
+            ViewBag.stDate = stDate.ToString("MMM-dd").ToUpper();
+            ViewBag.eDate = eDate.ToString("MMM-dd").ToUpper();
+            try
+            {
+                opd = servicesContext.Opds.Where(x => x.Date >= stDate && x.Date <= eDate).ToList();
+                if (opd != null) { 
+                opd2= opd.Where(x => x.Services.ToLower() == "frame").ToList();
+                ViewBag.OPDFrameSales = opd.Where(x => x.Services.ToLower() == "frame").Sum(x => x.Amount);
+              
+                    ViewBag.counter = opd2.Count();
+                    return View(opd2);
+                }
+                return View(opd2);
+            }
+            catch (Exception ex)
+            {
+                opd2 = null;
+                return View(opd2);
+            }
+        }
+        [HttpPost]
              public ActionResult OnlyConsultationOpd(DateTime stDate, DateTime eDate)
         {
             List<Opd> opd = null;
+            ViewBag.Amount = null;
+            ViewBag.stDate=stDate.ToString("MMM-dd").ToUpper();
+            ViewBag.eDate=eDate.ToString("MMM-dd").ToUpper();
             try
             {
                 opd = servicesContext.Opds.Where(x => x.Date >= stDate && x.Date <= eDate).Where(x=>x.Services.Contains("Consultation")).ToList();
                 if (opd != null)
                 {
+                    var sumAmount=opd.Where(x=>x.Amount>0).Sum(x=>x.Amount);
+                    ViewBag.counter=opd.Count();
+                    ViewBag.Amount=sumAmount;
                     return View(opd);
                 }
                 return View(opd);
@@ -86,17 +130,73 @@ namespace AnwiamEyeClinicServices.Controllers
         {
             ViewBag.records = new List<Opd>() { };
             Opd opd = new Opd();
+            OPDConsultStatus ops = new OPDConsultStatus();
             try
             {
                 opd.PatientId = PatientId;
                 opd.PatientName = PatientName;
+                
                 opd.Address = Address;
                 opd.Contact = Contact;
                 opd.Services = string.Join(", ", Services);
                 opd.Amount = Convert.ToDecimal(Amount);
                 opd.Date = Date;
+                opd.Status = "";
                 servicesContext.Opds.Add(opd);
                 servicesContext.SaveChanges();
+
+                var curr = servicesContext.Opds.OrderByDescending(x=>x.Id).Select(y => y.Id ).FirstOrDefault();
+                
+                ops.Id = curr;
+                ops.PatientId = PatientId;
+                ops.PatientName = PatientName;
+
+                ops.Address = Address;
+                ops.Contact = Contact;
+                ops.Services = string.Join(", ", Services);
+                ops.Amount = Convert.ToDecimal(Amount);
+                ops.Date = Date;
+                opd.Status = "";
+                servicesContext.OPDConsultStatuses.Add(ops);
+                servicesContext.SaveChanges();
+
+                ViewBag.success = "Patient is Added Successfully";
+                return View();
+
+                //return View("success");
+            }
+            catch
+            {
+                ViewBag.success = "Try Again";
+                return View();
+            }
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateAdmin(string PatientId, string PatientName, string Address, string Contact,
+            string[] Services, decimal Amount, DateTime Date)
+        {
+            ViewBag.records = new List<Opd>() { };
+            Opd opd = new Opd();
+            OPDConsultStatus ops = new OPDConsultStatus();
+            try
+            {
+                opd.PatientId = PatientId;
+                opd.PatientName = PatientName;
+
+                opd.Address = Address;
+                opd.Contact = Contact;
+                opd.Services = string.Join(", ", Services);
+                opd.Amount = Convert.ToDecimal(Amount);
+                opd.Date = Date;
+                if (opd.PatientId == null || opd.PatientName == null || opd.Address == null || opd.Contact == null || opd.Services == null ||
+                    opd.Amount == Convert.ToDecimal(string.Empty))
+                {
+                    throw new Exception();
+                }
+                servicesContext.Opds.Add(opd);
+                servicesContext.SaveChanges();
+
                 ViewBag.success = "Patient is Added Successfully";
                 return View();
 
@@ -110,14 +210,58 @@ namespace AnwiamEyeClinicServices.Controllers
         }
 
         [HttpPost]
-        public ActionResult DailyRecords(DateTime date)
+        public ActionResult CreateRev(string PatientName,
+            string[] Services, decimal Amount, DateTime Date)
+        {
+            ViewBag.records = new List<Opd>() { };
+           RevenueServices opd = new RevenueServices();
+            try
+            {
+
+                opd.PatientName = PatientName;
+                opd.Services = string.Join(", ", Services);
+                opd.Amount = Convert.ToDecimal(Amount);              
+                opd.Date = Date;
+                if (opd.Services.IsNullOrEmpty()||opd.PatientName==null)
+                {
+                    throw new Exception();
+                }
+                servicesContext.RevenueServicies.Add(opd);
+                servicesContext.SaveChanges();
+                ViewBag.success = "Patient is Added Successfully";
+                return View("Create");
+            }
+            catch(Exception Ex)
+            {
+                ViewBag.success = "Try Again";
+                return View("Create");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult DailyRecordsOPD(DateTime date)
         {
             List<Opd> res = null;
             try
             {
-                res = servicesContext.Opds.Where(x => x.Date == date).ToList();
+                res = servicesContext.Opds.Where(x => x.Date == date && x.Services.Contains("Consultation")).ToList();
                 //ViewBag.records=res;
 
+                return View(res);
+            }
+            catch (Exception Ex)
+            {
+                return View("Create");
+            }
+        }
+       
+        [HttpPost]
+        public ActionResult DailyRecordsREV(DateTime date)
+        {
+            List<RevenueServices> res = null;
+            try
+            {
+                res=servicesContext.RevenueServicies.FromSqlInterpolated($"select * from udf_GetDailyRecordsRev({date})").ToList();
                 return View(res);
             }
             catch (Exception Ex)
@@ -178,7 +322,23 @@ namespace AnwiamEyeClinicServices.Controllers
             }
             return View(opd);
         }
+        public async Task<IActionResult> StatusOPD(int id)
+        {
+            using (var con = new AnwiamServicesContext())
+            {
+                var rec = con.Opds.Find(id);
+                if (rec != null)
+                {
 
+                    rec.Status = "Paid";
+                    con.Opds.Update(rec);
+                    await con.SaveChangesAsync();
+                }
+            }
+
+            return RedirectToAction("Index");
+
+        }
         // GET: OPDController/Delete/5
         public ActionResult Delete(int id)
         {

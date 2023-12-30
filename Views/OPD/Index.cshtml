@@ -1,13 +1,79 @@
-﻿
+﻿@model IEnumerable<AnwiamEyeClinicServices.Models.Opd>
+
 @{
     ViewData["Title"] = "Index";
 }
 
-<div class="text-center">
-    <h3 class="display-6 overlay">Your Vision Our Priority.</h3>
-    <div style="display:flex; justify-content:center;">
-        <img src="~/Images/ivue-oct.jpg" style="width:90%;height:450px;" />
-    </div>
-</div>
 
+<p>
+    <a asp-action="OpdHome">Back</a>
+</p>
+<table class="table">
+    <thead class="accordion-header alert-primary">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PatientId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PatientName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Services)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contact)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Services)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Date.GetDateTimeFormats()[0] )
+            </td>
+            <td style="color:red;font-weight:bold;">
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <button class="btn btn-success">
+                            <a asp-action="StatusOPD" asp-route-id="@item.Id" style="text-decoration:none; color:white;">
+                                PAID
+                            </a>
+                        </button>
 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

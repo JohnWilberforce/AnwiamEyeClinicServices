@@ -1,0 +1,78 @@
+﻿@model List<AnwiamEyeClinicServices.Models.Opd>
+
+@{
+    ViewData["Title"] = "Opd Frames";
+}
+
+<div class="d-flex justify-content-lg-start">
+    <p style="margin-right:10%">
+        <a asp-controller="OPD" asp-action="AccountOpd" style="text-decoration:none; text-align:center;background-color:seagreen;
+width:40%; border-radius: 10px;padding:5px; font-weight:bolder; color:white;"><i class="fas fa-arrow-left"></i>Back</a>
+    </p>
+    <h4 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight:bolder">OPD FRAME SALES FROM "@ViewBag.stDate" TO "@ViewBag.eDate"</h4>
+
+    <h4 style="margin-left:10%"> <span style="background-color:seagreen; border-end-end-radius:10px;">Total Amount</span> : Gh @ViewBag.OPDFrameSales </h4>
+</div>
+<table class="table">
+    <thead class="accordion-header alert-primary">
+        <tr>
+            <th></th>
+            <th>
+                PatientId
+            </th>
+            <th>
+                PatientName
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Contact
+            </th>
+            <th>
+                Services
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                Date
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @for (var i = 0; i < @ViewBag.counter; i++)
+        {
+            <tr>
+                <td>
+                    @(i + 1)
+                </td>
+
+                <td>
+                    @(Model[i].PatientId)
+                </td>
+                <td>
+                    @(Model[i].PatientName)
+                </td>
+                <td>
+                    @(Model[i].Address)
+                </td>
+                <td>
+                    @(Model[i].Contact)
+                </td>
+                <td>
+                    @(Model[i].Services)
+                </td>
+                <td>
+                    @(Model[i].Amount)
+                </td>
+                <td>
+                    @(Model[i].Date.GetDateTimeFormats()[0])
+                </td>
+
+
+            </tr>
+        }
+    </tbody>
+</table>

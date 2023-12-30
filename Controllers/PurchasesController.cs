@@ -30,9 +30,32 @@ namespace AnwiamEyeClinicServices.Controllers
             var vFT_OCTContext = _context.Purchases.Include(p => p.PatientId);
             return View(await vFT_OCTContext.ToListAsync());
         }
+        public ActionResult FrameSalesFromConsult()
+        {
+            var formattedData = DateTime.Now.Date;
+            return _context.RevenueServicies != null ?
+                        View(_context.RevenueServicies.Where(x => x.Date == formattedData && x.Services.Contains("Frame")).
+                        ToList().OrderByDescending(x => x.Id)) :
+                        Problem("Entity set 'AnwiamServicesContext.Consultations'  is null.");
+        }
+        public async Task<IActionResult> FramePaymentOPD(int id)
+        {
+            using (var con = new AnwiamServicesContext())
+            {
+                var rec = con.RevenueServicies.Find(id);
+                if (rec != null)
+                {
 
-        // GET: Purchases/Details/5
-        public async Task<IActionResult> Details(int? id)
+                    rec.Status = "Paid";
+                    con.RevenueServicies.Update(rec);
+                    await con.SaveChangesAsync();
+                }
+            }
+
+            return RedirectToAction("FrameSalesFromConsult");
+        }
+            // GET: Purchases/Details/5
+            public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Purchases == null)
             {
@@ -117,6 +140,10 @@ namespace AnwiamEyeClinicServices.Controllers
                 ViewBag.date1 = date1.ToString("MMMM dd, yyyy");
 
                 ViewBag.date2 = date2.ToString("MMMM dd, yyyy");
+                ViewBag.sumSales=res.Select(x => x.TotalPrice).Sum();
+                ViewBag.sumPaid = res.Select(x => x.AmountPaid).Sum();
+                var opd = _context.RevenueServicies.Where(x => x.Date >= date1 && x.Date <= date2).ToList();
+                ViewBag.OPDFrameSales = opd.Where(x => x.Services.ToLower()=="frame").Sum(x=>x.Amount);
             }
             catch(Exception ex)
             {
@@ -128,13 +155,17 @@ namespace AnwiamEyeClinicServices.Controllers
         [HttpPost]
         public async Task<IActionResult> SearchByName(string patientName)
         {
-           var px=await _context.RefractionPxes.Where(x => x.Name.Contains(patientName)).FirstOrDefaultAsync();
+            if (string.IsNullOrEmpty(patientName))
+            {
+                return View("Create");
+            }
+           var px=await _context.RefractionPxes.Where(x => x.Name.ToLower().Contains(patientName.ToLower())).FirstOrDefaultAsync();
             if (px != null)
             {
                 var obj = await _context.Purchases.Where(x => x.PatientId == px.Id).OrderByDescending(x=>x.PurchaseId).ToListAsync();
                 if (obj == null)
                 {
-                    return NotFound();
+                    return View("Create");
                 }
                 ViewBag.PatientName = px.Name;
                 ViewBag.PatientTel = px.Telephone;

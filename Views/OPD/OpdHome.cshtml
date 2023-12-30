@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "OPD Home";
+}
+<br />
+<br />
+
+<div style="display: flex; justify-content:space-evenly;">
+    <a asp-area="" asp-controller="OPD" asp-action="Index" style="text-decoration:none;">
+        <div style="width:200px;height:200px;border-top-left-radius:20px;background-color:darkblue;
+display:flex;justify-content:center;align-items:center;">
+        <div>
+            <h5 style="color:white;font-weight:bold;">OPD</h5>
+        </div>
+        </div>
+</a>
+    <a asp-area="" asp-controller="OPD" asp-action="Create" style="text-decoration:none;">
+        <div style="width:200px;height:200px;border-top-left-radius:20px;background-color:crimson;display:flex;
+justify-content:center;align-items:center;">
+            <div>
+                <h5 style="color:white;font-weight:bold;text-align:center;"><p>Services</p>
+                    <p style="font-size:1rem;">OCT|VFT|RET</p>
+                    </h5>
+            </div>
+        </div>
+    </a>
+    <a asp-area="" asp-controller="Purchases" asp-action="FrameSalesFromConsult" style="text-decoration:none;">
+        <div style="width:200px;height:200px;border-top-left-radius:20px;background-color:seagreen;display:flex;
+justify-content:center;align-items:center;">
+        <div>
+            <h5 style="color:white;font-weight:bold;">Pay For Frame</h5>
+        </div>
+        </div>
+    </a>
+
+</div>
