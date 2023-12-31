@@ -269,6 +269,23 @@ namespace AnwiamEyeClinicServices.Controllers
                 return View("Create");
             }
         }
+
+        [HttpGet]
+        public ActionResult DailyRecordsREV()
+        {
+            List<RevenueServices> res = null;
+            try
+            {
+                DateTime date = DateTime.Now.Date;
+                res = servicesContext.RevenueServicies.FromSqlInterpolated($"select * from udf_GetDailyRecordsRev({date})").ToList();
+                return View(res);
+            }
+            catch (Exception Ex)
+            {
+                return View("Create");
+            }
+        }
+
         // GET: OPDController/Edit/5
         public ActionResult Edit(int? Id)
         {
@@ -285,9 +302,28 @@ namespace AnwiamEyeClinicServices.Controllers
             }
             return View(opd);
         }
+        public ActionResult EditRev(int? Id)
+        {
+
+            if (Id == null || servicesContext.RevenueServicies == null)
+            {
+                return NotFound();
+            }
+
+            var rev = servicesContext.RevenueServicies.Find(Id);
+            if (rev == null)
+            {
+                return NotFound();
+            }
+            return View(rev);
+        }
         private bool OctExists(int id)
         {
             return (servicesContext.Opds?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+        private bool OctExistsRev(int id)
+        {
+            return (servicesContext.RevenueServicies?.Any(e => e.Id == id)).GetValueOrDefault();
         }
         // POST: OPDController/Edit/5
         [HttpPost]
@@ -321,6 +357,38 @@ namespace AnwiamEyeClinicServices.Controllers
                 return View("success");
             }
             return View(opd);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditRev(int Id, [Bind("Id,PatientName,Services,Amount,Status,Date")] RevenueServices rev)
+        {
+
+            if (ModelState.IsValid)
+            {
+                if (Id != rev.Id)
+                {
+                    return NotFound();
+                }
+                try
+                {
+                    servicesContext.Update(rev);
+                    servicesContext.SaveChanges();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!OctExistsRev(rev.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+
+                return View("success");
+            }
+            return View(rev);
         }
         public async Task<IActionResult> StatusOPD(int id)
         {
@@ -356,7 +424,22 @@ namespace AnwiamEyeClinicServices.Controllers
             return View(opd);
 
         }
+        public ActionResult DeleteRev(int? id)
+        {
 
+            if (id == null || servicesContext.RevenueServicies == null)
+            {
+                return NotFound();
+            }
+
+            var rev = servicesContext.RevenueServicies.Find(id);
+            if (rev == null)
+            {
+                return NotFound();
+            }
+            return View(rev);
+
+        }
         // POST: OPDController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -373,6 +456,34 @@ namespace AnwiamEyeClinicServices.Controllers
                     if (opd != null)
                     {
                         servicesContext.Opds.Remove(opd);
+                    }
+
+                    servicesContext.SaveChangesAsync();
+                    return View("successDelete");
+
+                }
+                catch
+                {
+                    return View();
+                }
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteRev(int Id, IFormCollection collection)
+        {
+            {
+                try
+                {
+                    if (servicesContext.RevenueServicies == null)
+                    {
+                        return View();
+                    }
+                    var rev = servicesContext.RevenueServicies.Find(Id);
+                    if (rev != null)
+                    {
+                        servicesContext.RevenueServicies.Remove(rev);
                     }
 
                     servicesContext.SaveChangesAsync();

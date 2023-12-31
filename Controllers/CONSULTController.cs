@@ -186,7 +186,7 @@ namespace AnwiamEyeClinicServices.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PatientId,PatientName,VisualAcuity,ChiefComplaint,PatientHistory,FamilyHistory,Diagnosis,Medications,SpectacleRx,Date")] Consultation consultation)
+        public async Task<IActionResult> Edit(int id, [Bind("PatientId,PatientName,VisualAcuity,ChiefComplaint,PatientHistory,FamilyHistory,Diagnosis,Medications,SpectacleRx,Date,Eyelids,Conjunctiva,Cornea,Pupils,Media,Lens,OpticNerve,Fundus,Note")] Consultation consultation)
         {
             var px = _context.Consultations.Where(x => x.PatientId == consultation.PatientId && x.Date == DateTime.Now.Date).FirstOrDefault();
 
@@ -208,6 +208,7 @@ namespace AnwiamEyeClinicServices.Controllers
                         p.Diagnosis = consultation.Diagnosis;
                         p.Medications = consultation.Medications;
                         p.Date = consultation.Date;
+                        
 
                         _context.Pharmacys.Add(p);
                         await _context.SaveChangesAsync();
