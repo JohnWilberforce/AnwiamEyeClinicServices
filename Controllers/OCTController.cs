@@ -47,11 +47,11 @@ namespace AnwiamEyeClinicServices.Controllers
 
         }
         [HttpPost]
-        public ViewResult Totals(DateTime stDate, DateTime eDate)
+        public async Task<ViewResult> Totals(DateTime stDate, DateTime eDate)
         {
             Total? total=new Total();
-            total=_context.Totals.FromSqlInterpolated($"select * from ufn_totals({stDate}, {eDate})").FirstOrDefault();
-            var ret = _context.RetinalImages.Where(x => x.date>=stDate && x.date<=eDate).ToList();
+            total= await _context.Totals.FromSqlInterpolated($"select * from ufn_totals({stDate}, {eDate})").FirstOrDefaultAsync();
+            var ret = await _context.RetinalImages.Where(x => x.date>=stDate && x.date<=eDate).ToListAsync();
             var retCount=0;
             if (ret != null)
             {
@@ -190,24 +190,24 @@ namespace AnwiamEyeClinicServices.Controllers
             //return View(oct);
         }
         [HttpPost]
-        public ViewResult DailyRecords(DateTime today)
+        public async Task<ViewResult> DailyRecords(DateTime today)
         {
             List<Oct> oct = null;
 
-            oct = _context.Octs.Where(x => x.Date == today).ToList();
+            oct = await _context.Octs.Where(x => x.Date == today).ToListAsync();
             ViewBag.today = today.ToString("dddd, dd MMMM yyyy");
 
             return View(oct);
         }
 
         [HttpPost]
-        public ViewResult Search(DateTime stDate, DateTime eDate)
+        public async Task<ViewResult> Search(DateTime stDate, DateTime eDate)
         {
 
             List<Oct> oct = new List<Oct>();
             try
             {
-                oct = _context.Octs.Where(x => x.Date >= stDate.Date && x.Date <= eDate.Date).ToList();
+                oct = await _context.Octs.Where(x => x.Date >= stDate.Date && x.Date <= eDate.Date).ToListAsync();
 
               
             }
@@ -218,15 +218,15 @@ namespace AnwiamEyeClinicServices.Controllers
 
             return View(oct);
         }
-        public ViewResult ViewReportOCT(DateTime stDate, DateTime eDate)
+        public async Task<ViewResult> ViewReportOCT(DateTime stDate, DateTime eDate)
         {
 
             List<OCTreport> octreport = new List<OCTreport>();
 
 
 
-            octreport = _context.OCTreports.FromSqlInterpolated($"select * from udf_GenerateOCTreport({stDate}, {eDate})").
-                OrderByDescending(x=>x.Amount).ToList();
+            octreport = await _context.OCTreports.FromSqlInterpolated($"select * from udf_GenerateOCTreport({stDate}, {eDate})").
+                OrderByDescending(x=>x.Amount).ToListAsync();
             return View(octreport);
         }
            

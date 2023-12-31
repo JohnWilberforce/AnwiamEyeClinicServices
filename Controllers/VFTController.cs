@@ -108,24 +108,24 @@ namespace AnwiamEyeClinicServices.Controllers
             return View(vft);
         }
         [HttpPost]
-        public ViewResult DailyRecords(DateTime today)
+        public async Task<ViewResult> DailyRecords(DateTime today)
         {
             List<Vft> vft = null;
 
-            vft = _context.Vfts.Where(x => x.Date == today).ToList();
+            vft = await _context.Vfts.Where(x => x.Date == today).ToListAsync();
             ViewBag.today = today.ToString("dddd, dd MMMM yyyy");
 
             return View(vft);
         }
 
         [HttpPost]
-        public ViewResult ViewReportVFT(DateTime stDate, DateTime eDate)
+        public async Task<ViewResult> ViewReportVFT(DateTime stDate, DateTime eDate)
         {
             List<VFTreport> vftreport = new List<VFTreport>();
 
 
 
-            vftreport = _context.VFTreports.FromSqlInterpolated($"select * from udf_GenerateReportByDate({stDate}, {eDate})").OrderByDescending(x => x.Amount).ToList();
+            vftreport = await _context.VFTreports.FromSqlInterpolated($"select * from udf_GenerateReportByDate({stDate}, {eDate})").OrderByDescending(x => x.Amount).ToListAsync();
                         return View(vftreport);
 
             

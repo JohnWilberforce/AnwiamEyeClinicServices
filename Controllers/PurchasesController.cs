@@ -30,19 +30,19 @@ namespace AnwiamEyeClinicServices.Controllers
             var vFT_OCTContext = _context.Purchases.Include(p => p.PatientId);
             return View(await vFT_OCTContext.ToListAsync());
         }
-        public ActionResult FrameSalesFromConsult()
+        public async Task<ActionResult> FrameSalesFromConsult()
         {
             var formattedData = DateTime.Now.Date;
-            return _context.RevenueServicies != null ?
-                        View(_context.RevenueServicies.Where(x => x.Date == formattedData && x.Services.Contains("Frame")).
-                        ToList().OrderByDescending(x => x.Id)) :
+            return  _context.RevenueServicies != null ?
+                        View(await _context.RevenueServicies.Where(x => x.Date == formattedData && x.Services.Contains("Frame")).OrderByDescending(x => x.Id).
+                        ToListAsync()) :
                         Problem("Entity set 'AnwiamServicesContext.Consultations'  is null.");
         }
         public async Task<IActionResult> FramePaymentOPD(int id)
         {
             using (var con = new AnwiamServicesContext())
             {
-                var rec = con.RevenueServicies.Find(id);
+                var rec = await con.RevenueServicies.FindAsync(id);
                 if (rec != null)
                 {
 
@@ -142,7 +142,7 @@ namespace AnwiamEyeClinicServices.Controllers
                 ViewBag.date2 = date2.ToString("MMMM dd, yyyy");
                 ViewBag.sumSales=res.Select(x => x.TotalPrice).Sum();
                 ViewBag.sumPaid = res.Select(x => x.AmountPaid).Sum();
-                var opd = _context.RevenueServicies.Where(x => x.Date >= date1 && x.Date <= date2).ToList();
+                var opd = await _context.RevenueServicies.Where(x => x.Date >= date1 && x.Date <= date2).ToListAsync();
                 ViewBag.OPDFrameSales = opd.Where(x => x.Services.ToLower()=="frame").Sum(x=>x.Amount);
             }
             catch(Exception ex)
@@ -172,7 +172,7 @@ namespace AnwiamEyeClinicServices.Controllers
                 ViewBag.PatientSpecs = px.SpectacleRx;
                 return View(obj);
             }
-            else { return NotFound(); }
+            else { return NotFound("Not Found, Go back"); }
         }
         // GET: Purchases/Edit/5
         public async Task<IActionResult> Edit(int? id)

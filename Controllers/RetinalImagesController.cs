@@ -100,13 +100,13 @@ namespace AnwiamEyeClinicServices.Controllers
             }
         }
         [HttpPost]
-        public ViewResult ViewReportImaging(DateTime stDate, DateTime eDate)
+        public async Task<ViewResult> ViewReportImaging(DateTime stDate, DateTime eDate)
         {
             List<ImageReport> vftreport = new List<ImageReport>();
 
 
 
-            vftreport = _context.ImageReports.FromSqlInterpolated($"select * from udf_GenerateImagingReport({stDate}, {eDate})").OrderByDescending(x => x.Amount).ToList();
+            vftreport = await _context.ImageReports.FromSqlInterpolated($"select * from udf_GenerateImagingReport({stDate}, {eDate})").OrderByDescending(x => x.Amount).ToListAsync();
             return View(vftreport);
 
 
