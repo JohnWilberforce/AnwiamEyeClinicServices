@@ -1,3 +1,0 @@
-areas visited: check the webconfig file ->C:\Users\jache\Desktop\AnwiamEyeClinicServices\bin\Debug\net6.0\publish
-
-inetsvr location -> C:\Windows\System32\inetsrv\config

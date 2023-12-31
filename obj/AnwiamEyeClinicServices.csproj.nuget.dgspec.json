@@ -1,34 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jache\\Desktop\\AnwiamEyeClinicServices\\AnwiamEyeClinicServices.csproj": {}
+    "C:\\AnwiamEyeClinicServices\\AnwiamEyeClinicServices.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jache\\Desktop\\AnwiamEyeClinicServices\\AnwiamEyeClinicServices.csproj": {
+    "C:\\AnwiamEyeClinicServices\\AnwiamEyeClinicServices.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jache\\Desktop\\AnwiamEyeClinicServices\\AnwiamEyeClinicServices.csproj",
+        "projectUniqueName": "C:\\AnwiamEyeClinicServices\\AnwiamEyeClinicServices.csproj",
         "projectName": "AnwiamEyeClinicServices",
-        "projectPath": "C:\\Users\\jache\\Desktop\\AnwiamEyeClinicServices\\AnwiamEyeClinicServices.csproj",
-        "packagesPath": "C:\\Users\\jache\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jache\\Desktop\\AnwiamEyeClinicServices\\obj\\",
+        "projectPath": "C:\\AnwiamEyeClinicServices\\AnwiamEyeClinicServices.csproj",
+        "packagesPath": "C:\\Users\\pedit\\.nuget\\packages\\",
+        "outputPath": "C:\\AnwiamEyeClinicServices\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\jache\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\ServiceFabricSDK.config"
+          "C:\\Users\\pedit\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\Microsoft SDKs\\Service Fabric\\packages": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -97,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
