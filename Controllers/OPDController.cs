@@ -27,7 +27,14 @@ namespace AnwiamEyeClinicServices.Controllers
                         ToListAsync()) :
                         Problem("Entity set 'AnwiamServicesContext.Opds'  is null.");
         }
-
+        public async Task<ViewResult> GenerateOpdNumber()
+        {
+            ViewBag.OpdNumber = null;
+            var number= await servicesContext.Opds.OrderByDescending(y => y.Id).Select(x => x.Id).FirstOrDefaultAsync();
+            var seqNumber = $"AEC{number+1}/24";
+            ViewBag.OpdNumber = seqNumber;
+            return View("Create");
+        }
         // GET: OPDController/Details/5
         public ViewResult OpdHome()
         {
