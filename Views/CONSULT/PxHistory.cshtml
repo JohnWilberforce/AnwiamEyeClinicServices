@@ -70,7 +70,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Date)
             </th>
-            <th></th>
+            <th>
+                Contact
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -136,7 +138,9 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Date.Value.GetDateTimeFormats()[0])
                     </td>
-
+                    <td>
+                        @ViewBag.contact
+                    </td>
                 </tr>
             }
         }

@@ -149,8 +149,11 @@ namespace AnwiamEyeClinicServices.Controllers
                 opd.Amount = Convert.ToDecimal(Amount);
                 opd.Date = Date;
                 opd.Status = "";
-                await servicesContext.Opds.AddAsync(opd);
-                await servicesContext.SaveChangesAsync();
+                if (ModelState.IsValid)
+                {
+                    await servicesContext.Opds.AddAsync(opd);
+                    await servicesContext.SaveChangesAsync();
+                }
 
                 var curr = await servicesContext.Opds.OrderByDescending(x=>x.Id).Select(y => y.Id ).FirstOrDefaultAsync();
                 
@@ -164,13 +167,17 @@ namespace AnwiamEyeClinicServices.Controllers
                 ops.Amount = Convert.ToDecimal(Amount);
                 ops.Date = Date;
                 opd.Status = "";
-                await servicesContext.OPDConsultStatuses.AddAsync(ops);
-                await servicesContext.SaveChangesAsync();
+                
+                    if (ModelState.IsValid)
+                    {
+                        await servicesContext.OPDConsultStatuses.AddAsync(ops);
+                        await servicesContext.SaveChangesAsync();
+                    }
+                    ViewBag.success = "Patient is Added Successfully";
+                
 
-                ViewBag.success = "Patient is Added Successfully";
                 return View();
 
-                //return View("success");
             }
             catch
             {

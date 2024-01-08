@@ -23,20 +23,30 @@ namespace AnwiamEyeClinicServices.Controllers
         }
 
         // GET: CONSULT
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var formattedData = DateTime.Now.Date;
-              return _context.Opds != null ? 
-                          View(_context.OPDConsultStatuses.Where(x=>x.Date==formattedData && x.Services.Contains("Consultation")).ToList()) :
-                          Problem("Entity set 'AnwiamServicesContext.Consultations'  is null.");
+           var res= await (from o in _context.Opds
+                      join os in _context.OPDConsultStatuses on o.Id equals os.Id
+                      where o.Status == "Paid" && o.Date ==formattedData
+                      select os).ToListAsync();
+            //var res = await _context.OPDConsultStatuses.Where(x => x.Date == formattedData && x.Services.Contains("Consultation")).ToListAsync();
+            if (res != null)
+            {
+                return View(res);
+            }
+            else
+            {
+                return View();
+            }
         }
         [HttpPost]
-        public ViewResult hxBtnDates(DateTime date1, DateTime date2)
+        public async Task<ViewResult> hxBtnDates(DateTime date1, DateTime date2)
         {
             List<Consultation> cons = null;
             try
             {
-                cons = _context.Consultations.Where(x => x.Date >= date1 && x.Date <= date2).ToList();
+                cons = await _context.Consultations.Where(x => x.Date >= date1 && x.Date <= date2).ToListAsync();
                 if (cons != null)
                 {
                     return View(cons);
@@ -50,7 +60,7 @@ namespace AnwiamEyeClinicServices.Controllers
             }
         }
         [HttpPost]
-        public ViewResult PxHistory(string patientId)
+        public async Task<ViewResult> PxHistory(string patientId)
         {
             //var result = from c in _context.Consultations join p in _context.Opds on c.PatientId equals p.PatientId
             //            where c.Date == date && c.PatientId == p.PatientId
@@ -58,9 +68,13 @@ namespace AnwiamEyeClinicServices.Controllers
             List<Consultation>? result = null;
             try
             {
-                result = _context.Consultations.Where(x => x.PatientId.ToLower() == patientId.ToLower()).ToList();
+                result = await _context.Consultations.Where(x => x.PatientId.ToLower() == patientId.ToLower()).
+                    OrderByDescending(x=>x.Id).ToListAsync();
                 if (result != null)
                 {
+                    ViewBag.contact = await _context.Opds.Where(x => x.PatientId.ToLower() == patientId.ToLower()).Select(a => a.Contact).FirstOrDefaultAsync();
+                    
+
                     return View(result);
                 }
                 else { return View(null); }
