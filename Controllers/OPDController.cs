@@ -355,6 +355,18 @@ namespace AnwiamEyeClinicServices.Controllers
                 {
                     servicesContext.Update(opd);
                     await servicesContext.SaveChangesAsync();
+                    var opdStatus = await servicesContext.OPDConsultStatuses.Where(X => X.Id == Id).FirstOrDefaultAsync();
+                    if (opdStatus != null)
+                    {
+                        opdStatus.PatientId = opd.PatientId;
+                        opdStatus.PatientName = opd.PatientName;
+                        opdStatus.Services = opd.Services;
+                        opdStatus.Address = opd.Address;
+                        opdStatus.Contact = opd.Contact;
+                        opdStatus.Amount = opd.Amount;
+                        await servicesContext.SaveChangesAsync();
+
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -470,6 +482,11 @@ namespace AnwiamEyeClinicServices.Controllers
                     if (opd != null)
                     {
                         servicesContext.Opds.Remove(opd);
+                    }
+                    var opdStatus = await servicesContext.OPDConsultStatuses.FindAsync(Id);
+                    if (opdStatus != null)
+                    {
+                        servicesContext.OPDConsultStatuses.Remove(opdStatus);
                     }
 
                     await servicesContext.SaveChangesAsync();

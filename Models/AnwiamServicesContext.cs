@@ -77,11 +77,11 @@ public partial class AnwiamServicesContext : DbContext
             entity.ToTable("Consultation");
 
             entity.Property(e => e.ChiefComplaint)
-                .HasMaxLength(100)
+                .HasMaxLength(500)
                 .IsUnicode(false);
             entity.Property(e => e.Date).HasColumnType("date");
             entity.Property(e => e.Diagnosis)
-                .HasMaxLength(100)
+                .HasMaxLength(500)
                 .IsUnicode(false);
             entity.Property(e => e.FamilyHistory)
                 .HasMaxLength(500)
@@ -111,7 +111,7 @@ public partial class AnwiamServicesContext : DbContext
             entity.Property(e => e.OpticNerve).HasMaxLength(200);
             entity.Property(e => e.Fundus).HasMaxLength(200);
             entity.Property(e => e.VisualAcuity)
-                .HasMaxLength(20)
+                .HasMaxLength(200)
                 .IsUnicode(false);
         });
         modelBuilder.Entity<PurchaseRefractionPx>(entity =>
