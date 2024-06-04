@@ -37,6 +37,9 @@ border-radius: 10px;padding:5px; font-weight:bolder; color:white;"><i class="fas
                 Amount
             </th>
             <th>
+                Status
+            </th>
+            <th>
                 Date
             </th>
           
@@ -65,6 +68,9 @@ border-radius: 10px;padding:5px; font-weight:bolder; color:white;"><i class="fas
             </td>
             <td>
                     @(Model[i].Amount)
+            </td>
+            <td>
+                @(Model[i].Status)
             </td>
             <td>
                     @(Model[i].Date.GetDateTimeFormats()[0])

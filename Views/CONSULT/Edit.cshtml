@@ -9,150 +9,157 @@
 <h4>Consultation <span class="col-md-4 fadeInOut" style="animation-duration: 2s;color:darkred; margin-left:25%;">@ViewBag.alreadySeen</span></h4>
 <hr />
 <div class="card">
-        <form asp-action="Edit">
+    <form asp-action="Edit">
 
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
 
         <div class="card alert-primary col-md-12">
             <div class="card bg-primary" style="text-align:center;font-weight:bolder;color:white;">Patient History</div>
             <div class="card-body">
-            <div class="row">
-            <div class="form-group col-md-3">
-                <label asp-for="PatientId" class="control-label fw-bold">Patient ID</label>
-                <input asp-for="PatientId" value="@ViewBag.PId" class="form-control" />
-                <span asp-validation-for="PatientId" class="text-danger"></span>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label asp-for="PatientId" class="control-label fw-bold">Patient ID</label>
+                        <input asp-for="PatientId" value="@ViewBag.PId" class="form-control" />
+                        <span asp-validation-for="PatientId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="PatientName" class="control-label fw-bolder">Patient Name</label>
+                        <input asp-for="PatientName" value="@ViewBag.name" class="form-control" />
+                        <span asp-validation-for="PatientName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-1">
+                        <label class="control-label fw-bolder">Age</label>
+                        <input value="@ViewBag.Age" class="form-control" />
+
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="VisualAcuity" class="control-label fw-bolder">Visual Acuity</label>
+                        <input asp-for="VisualAcuity" class="form-control" />
+                        <span asp-validation-for="VisualAcuity" class="text-danger"></span>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label asp-for="ChiefComplaint" class="control-label fw-bolder">Chief Complaint</label>
+                        <textarea asp-for="ChiefComplaint" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="ChiefComplaint" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="PatientHistory" class="control-label fw-bolder">Patient Ocular/Medical History</label>
+                        <textarea asp-for="PatientHistory" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="PatientHistory" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="FamilyHistory" class="control-label fw-bolder">Family Ocular/Medical History</label>
+                        <textarea asp-for="FamilyHistory" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="FamilyHistory" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group col-md-5">
-                <label asp-for="PatientName" class="control-label fw-bolder">Patient Name</label>
-                <input asp-for="PatientName" value="@ViewBag.name"class="form-control" />
-                <span asp-validation-for="PatientName" class="text-danger"></span>
-            </div>
-            <div class="form-group col-md-4">
-                <label asp-for="VisualAcuity" class="control-label fw-bolder">Visual Acuity</label>
-                <input asp-for="VisualAcuity" class="form-control" />
-                <span asp-validation-for="VisualAcuity" class="text-danger"></span>
-            </div>
-            </div>
-            <br />
-            <div class="row">
-            <div class="form-group col-md-4">
-                <label asp-for="ChiefComplaint" class="control-label fw-bolder">Chief Complaint</label>
-                <textarea asp-for="ChiefComplaint" class="form-control" rows="3"></textarea>
-                <span asp-validation-for="ChiefComplaint" class="text-danger"></span>
-            </div>
-            <div class="form-group col-md-4">
-                <label asp-for="PatientHistory" class="control-label fw-bolder">Patient Ocular/Medical History</label>
-                <textarea asp-for="PatientHistory" class="form-control" rows="3"></textarea>
-                <span asp-validation-for="PatientHistory" class="text-danger"></span>
-            </div>
-            <div class="form-group col-md-4">
-                <label asp-for="FamilyHistory" class="control-label fw-bolder">Family Ocular/Medical History</label>
-                <textarea asp-for="FamilyHistory" class="form-control"rows="3"></textarea>
-                <span asp-validation-for="FamilyHistory" class="text-danger"></span>
-            </div>
-             </div>
-             </div>
-             </div>
-             <br />
+        </div>
+        <br />
         <div class="card alert-primary">
             <div class="card bg-primary" style="text-align:center;font-weight:bolder;color:white;">Ocular Findings</div>
-                     <div class="card-body">
-        <div class="row">
-        <div class="form-group col-md-3">
-                <label asp-for="Eyelids" class="control-label fw-bolder"></label>
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label asp-for="Eyelids" class="control-label fw-bolder"></label>
                         <textarea asp-for="Eyelids" class="form-control" rows="1"></textarea>
-            <span asp-validation-for="Eyelids" class="text-danger"></span>
-        </div>
+                        <span asp-validation-for="Eyelids" class="text-danger"></span>
+                    </div>
                     <div class="form-group col-md-3">
                         <label asp-for="Conjunctiva" class="control-label fw-bolder">Conjuctiva/Sclera</label>
                         <textarea asp-for="Conjunctiva" class="form-control" rows="1"></textarea>
                         <span asp-validation-for="Conjunctiva" class="text-danger"></span>
                     </div>
-        <div class="form-group col-md-3">
-                <label asp-for="Cornea" class="control-label fw-bolder"></label>
+                    <div class="form-group col-md-3">
+                        <label asp-for="Cornea" class="control-label fw-bolder"></label>
                         <textarea asp-for="Cornea" class="form-control" rows="1"></textarea>
-            <span asp-validation-for="Cornea" class="text-danger"></span>
-        </div>
-        <div class="form-group col-md-3">
-                <label asp-for="Pupils" class="control-label fw-bolder">Pupils/Iris</label>
+                        <span asp-validation-for="Cornea" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label asp-for="Pupils" class="control-label fw-bolder">Pupils/Iris</label>
                         <textarea asp-for="Pupils" class="form-control" rows="1"></textarea>
-            <span asp-validation-for="Pupils" class="text-danger"></span>
-        </div>
-        </div>
+                        <span asp-validation-for="Pupils" class="text-danger"></span>
+                    </div>
+                </div>
 
-        <div class="row">
-            <div class="form-group col-md-3">
-                <label asp-for="Media" class="control-label fw-bolder"></label>
-                <textarea asp-for="Media" class="form-control" rows="1"></textarea>
-                <span asp-validation-for="Media" class="text-danger"></span>
-            </div>
-            <div class="form-group col-md-4">
-                <label asp-for="Lens" class="control-label fw-bolder"></label>
-                <textarea asp-for="Lens" class="form-control" rows="1"></textarea>
-                <span asp-validation-for="Lens" class="text-danger"></span>
-            </div>
-            <div class="form-group col-md-4">
-                <label asp-for="OpticNerve" class="control-label fw-bolder">Optic Nerve</label>
-                <textarea asp-for="OpticNerve" class="form-control" rows="1"></textarea>
-                <span asp-validation-for="OpticNerve" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="row">
-        <div class="form-group col-md-3">
-                <label asp-for="Fundus" class="control-label fw-bolder"></label>
-            <textarea asp-for="Fundus" class="form-control" rows="3"></textarea>
-            <span asp-validation-for="Fundus" class="text-danger"></span>
-        </div>
-             
-             
-            <div class="form-group col-md-4">
-                <label asp-for="Diagnosis" class="control-label fw-bolder"></label>
-                <textarea asp-for="Diagnosis" class="form-control" rows="3"></textarea>
-                <span asp-validation-for="Diagnosis" class="text-danger"></span>
-            </div>
-            <div class="form-group col-md-4">
-                <label asp-for="Medications" class="control-label fw-bolder"></label>
-                <textarea asp-for="Medications" class="form-control" rows="3"></textarea>
-                <span asp-validation-for="Medications" class="text-danger"></span>
-            </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label asp-for="Media" class="control-label fw-bolder"></label>
+                        <textarea asp-for="Media" class="form-control" rows="1"></textarea>
+                        <span asp-validation-for="Media" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="Lens" class="control-label fw-bolder"></label>
+                        <textarea asp-for="Lens" class="form-control" rows="1"></textarea>
+                        <span asp-validation-for="Lens" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="OpticNerve" class="control-label fw-bolder">Optic Nerve</label>
+                        <textarea asp-for="OpticNerve" class="form-control" rows="1"></textarea>
+                        <span asp-validation-for="OpticNerve" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label asp-for="Fundus" class="control-label fw-bolder"></label>
+                        <textarea asp-for="Fundus" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Fundus" class="text-danger"></span>
+                    </div>
 
-        </div>
-            <div class="row">
-            
-            <div class="form-group col-md-3">
-                <label asp-for="SpectacleRx" class="control-label fw-bolder"></label>
-                <textarea asp-for="SpectacleRx" class="form-control" rows="2"></textarea>
-                <span asp-validation-for="SpectacleRx" class="text-danger"></span>
-            </div>
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="Diagnosis" class="control-label fw-bolder"></label>
+                        <textarea asp-for="Diagnosis" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Diagnosis" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="Medications" class="control-label fw-bolder"></label>
+                        <textarea asp-for="Medications" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Medications" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="row">
+
+                    <div class="form-group col-md-3">
+                        <label asp-for="SpectacleRx" class="control-label fw-bolder"></label>
+                        <textarea asp-for="SpectacleRx" class="form-control" rows="2"></textarea>
+                        <span asp-validation-for="SpectacleRx" class="text-danger"></span>
+                    </div>
                     <div class="form-group col-md-3">
                         <label asp-for="Note" class="control-label fw-bolder"></label>
                         <textarea type="Note" asp-for="Note" class="form-control" rows="2"></textarea>
                         <span asp-validation-for="Note" class="text-danger"></span>
                     </div>
-            <div class="form-group col-md-2">
-                <label asp-for="Date" class="control-label fw-bolder"></label>
-                <input type="date" asp-for="Date" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
-            </div>
-            </div>
+                    <div class="form-group col-md-2">
+                        <label asp-for="Date" class="control-label fw-bolder"></label>
+                        <input type="date" asp-for="Date" class="form-control" />
+                        <span asp-validation-for="Date" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
         </div>
-            <br />
-            <div class="row">
+        <br />
+        <div class="row">
             <div class="form-group col-md-1">
                 <input type="submit" value="SAVE" class="btn btn-success" />
             </div>
-          <div class="col-md-1">
-            <button class="btn btn-warning"><a asp-action="Index" style="text-decoration:none;color:white">CANCEL</a></button>
-        </div>
-          
+            <div class="col-md-1">
+                <button class="btn btn-warning"><a asp-action="Index" style="text-decoration:none;color:white">CANCEL</a></button>
+            </div>
+
         </div>
         <br />
-        </form>
-        
+    </form>
+
 
 </div>
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

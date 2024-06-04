@@ -26,10 +26,10 @@ namespace AnwiamEyeClinicServices.Controllers
         public async Task<IActionResult> Index()
         {
             var formattedData = DateTime.Now.Date;
-           var res= await (from o in _context.Opds
-                      join os in _context.OPDConsultStatuses on o.Id equals os.Id
-                      where o.Status == "Paid" && o.Date ==formattedData
-                      select os).ToListAsync();
+            var res = await (from o in _context.Opds
+                             join os in _context.OPDConsultStatuses on o.Id equals os.Id
+                             where o.Status == "Paid" && o.Date == formattedData
+                             select os).ToListAsync();
             //var res = await _context.OPDConsultStatuses.Where(x => x.Date == formattedData && x.Services.Contains("Consultation")).ToListAsync();
             if (res != null)
             {
@@ -72,13 +72,15 @@ namespace AnwiamEyeClinicServices.Controllers
                 if (result != null)
                 {
                     //ViewBag.contact = await _context.Opds.Where(x => x.PatientId.ToLower() == patientId.ToLower()).Take(1).Select(a => a.Contact).FirstOrDefaultAsync();
-                    
+
 
                     return View(result);
                 }
                 else { return View(null); }
             }
-            catch(Exception ex) { result = null;
+            catch (Exception ex)
+            {
+                result = null;
                 return View(result);
             }
         }
@@ -134,13 +136,14 @@ namespace AnwiamEyeClinicServices.Controllers
         {
             var formattedData = DateTime.Now.Date;
             return _context.Pharmacys != null ?
-                        View(_context.Pharmacys.Where(x => x.Date == formattedData).ToList()) :
+                        View(_context.Pharmacys.Where(x => x.Date == formattedData && x.Medications != null).ToList()) :
                         Problem("Entity set 'AnwiamServicesContext.Consultations'  is null.");
         }
 
         public async Task<IActionResult> PharmacyStatusUpdate(int id)
         {
-            using (var con = new AnwiamServicesContext()) {
+            using (var con = new AnwiamServicesContext())
+            {
                 var rec = con.Pharmacys.Find(id);
                 if (rec != null)
                 {
@@ -150,7 +153,7 @@ namespace AnwiamEyeClinicServices.Controllers
                     await con.SaveChangesAsync();
                 }
             }
-            
+
             return RedirectToAction("PharmacyDlyRecords");
 
         }
@@ -191,7 +194,11 @@ namespace AnwiamEyeClinicServices.Controllers
             }
             ViewBag.Id = opdToConsultation.Id;
             ViewBag.PId = opdToConsultation.PatientId;
-            ViewBag.name = opdToConsultation.PatientName;
+            ViewBag.name = opdToConsultation.PatientName ?? (_context.Opds.Where(x => x.PatientId == opdToConsultation.PatientId))
+                .Where(y => y.PatientName != null).Select(z => z.PatientName).FirstOrDefault(); ;
+            ViewBag.Age = opdToConsultation.Age ?? (_context.Opds.Where(x => x.PatientId == opdToConsultation.PatientId))
+                .Where(y => y.Age != null).Select(z => z.Age).FirstOrDefault();
+
             return View();
         }
 
@@ -204,137 +211,162 @@ namespace AnwiamEyeClinicServices.Controllers
         {
             var px = _context.Consultations.Where(x => x.PatientId == consultation.PatientId && x.Date == DateTime.Now.Date).FirstOrDefault();
 
-
-            try
+            using (var transaction = _context.Database.BeginTransaction())
             {
-                if (px != null)
+                try
                 {
-                    //ViewBag.alreadySeen = "Patient is already Examined";
-                    if (consultation.SpectacleRx != null||consultation.PatientHistory!=null||consultation.FamilyHistory !=null)
+                    if (px != null)
                     {
-                        px.SpectacleRx = consultation.SpectacleRx;
-                        px.PatientHistory = consultation.PatientHistory;
-                        px.FamilyHistory = consultation.FamilyHistory;
-                    }
-                    if (consultation.Medications != null || consultation.ChiefComplaint !=null || consultation.Eyelids !=null)
-                    {
-                        px.Medications = consultation.Medications;
-                        px.ChiefComplaint = consultation.ChiefComplaint;
-                        px.Eyelids = consultation.Eyelids;
-                    }
-                    if (consultation.Diagnosis != null || consultation.VisualAcuity !=null ||consultation.Conjunctiva!=null)
-                    {
-                        px.Diagnosis = consultation.Diagnosis;
-                        px.VisualAcuity = consultation.VisualAcuity;
-                        px.Conjunctiva = consultation.Conjunctiva;
-                    }
-                    if (consultation.Note != null || consultation.Fundus != null ||consultation.Cornea!=null||consultation.Pupils!=null)
-                    {
-                        px.Note = consultation.Note;
-                        px.Fundus = consultation.Fundus;
-                        px.Cornea = consultation.Cornea;
-                        px.Pupils = consultation.Pupils;
-                    }
-                    if (consultation.Media != null || consultation.Lens != null || consultation.OpticNerve != null)
-                    {
-                        px.Media = consultation.Media;
-                        px.Lens=consultation.Lens;
-                        px.OpticNerve = consultation.OpticNerve;
-                    }
-                    if(consultation.PatientId !=null || consultation.PatientName != null)
-                    {
-                        px.PatientId = consultation.PatientId;
-                        px.PatientName = consultation.PatientName;
-                    }
-                    await _context.SaveChangesAsync();
+                        try
+                        {
+                            //ViewBag.alreadySeen = "Patient is already Examined";
+                            if (consultation.SpectacleRx != null || consultation.PatientHistory != null || consultation.FamilyHistory != null)
+                            {
+                                px.SpectacleRx = consultation.SpectacleRx;
+                                px.PatientHistory = consultation.PatientHistory;
+                                px.FamilyHistory = consultation.FamilyHistory;
+                            }
+                            if (consultation.Medications != null || consultation.ChiefComplaint != null || consultation.Eyelids != null)
+                            {
+                                px.Medications = consultation.Medications;
+                                px.ChiefComplaint = consultation.ChiefComplaint;
+                                px.Eyelids = consultation.Eyelids;
+                            }
+                            if (consultation.Diagnosis != null || consultation.VisualAcuity != null || consultation.Conjunctiva != null)
+                            {
+                                px.Diagnosis = consultation.Diagnosis;
+                                px.VisualAcuity = consultation.VisualAcuity;
+                                px.Conjunctiva = consultation.Conjunctiva;
+                            }
+                            if (consultation.Note != null || consultation.Fundus != null || consultation.Cornea != null || consultation.Pupils != null)
+                            {
+                                px.Note = consultation.Note;
+                                px.Fundus = consultation.Fundus;
+                                px.Cornea = consultation.Cornea;
+                                px.Pupils = consultation.Pupils;
+                            }
+                            if (consultation.Media != null || consultation.Lens != null || consultation.OpticNerve != null)
+                            {
+                                px.Media = consultation.Media;
+                                px.Lens = consultation.Lens;
+                                px.OpticNerve = consultation.OpticNerve;
+                            }
+                            if (consultation.PatientId != null || consultation.PatientName != null)
+                            {
+                                px.PatientId = consultation.PatientId;
+                                px.PatientName = consultation.PatientName;
+                            }
+                            await _context.SaveChangesAsync();
 
-                    var pharm = await _context.Pharmacys.Where(x => x.PatientId == consultation.PatientId && x.Date == DateTime.Now).FirstOrDefaultAsync();
-                    if (pharm != null)
-                    {
 
-                        pharm.Diagnosis = consultation.Diagnosis;
-                        pharm.Medications = consultation.Medications;
+                            var pharm = await _context.Pharmacys.Where(x => x.PatientId == consultation.PatientId && x.Date == DateTime.Now.Date).FirstOrDefaultAsync();
+                            if (pharm != null)
+                            {
 
+                                pharm.Diagnosis = consultation.Diagnosis;
+                                pharm.Medications = consultation.Medications;
+
+                            }
+
+                            else if (pharm == null && consultation.Medications != null)
+                            {
+                                Pharmacy p = new Pharmacy();
+                                p.PatientId = consultation.PatientId;
+                                p.PatientName = consultation.PatientName;
+                                p.Diagnosis = consultation.Diagnosis;
+                                p.Medications = consultation.Medications;
+                                p.Date = consultation.Date;
+                                _context.Pharmacys.Add(p);
+                                await _context.SaveChangesAsync();
+
+                            }
+                            OPDConsultStatus? pxRec = null;
+                            try
+                            {
+
+                                pxRec = _context.OPDConsultStatuses.Where(x => x.Id == Id).FirstOrDefault();
+                                if (pxRec != null)
+                                {
+                                    pxRec.Status = "Seen";
+                                    _context.OPDConsultStatuses.Update(pxRec);
+                                    _context.SaveChanges();
+                                    transaction.Commit();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                transaction.Rollback();
+                                pxRec.Status = null;
+                                return View(consultation);
+                            }
+                        }
+                        catch (Exception Ex)
+                        {
+                            transaction.Rollback();
+                            return View(consultation);
+                        }
+                        return View("success");
                     }
-                    else if (pharm == null && consultation.Medications != null)
+                    else
                     {
+
+                        _context.Consultations.Add(consultation);
+                        await _context.SaveChangesAsync();
+
+
                         Pharmacy p = new Pharmacy();
                         p.PatientId = consultation.PatientId;
                         p.PatientName = consultation.PatientName;
                         p.Diagnosis = consultation.Diagnosis;
                         p.Medications = consultation.Medications;
                         p.Date = consultation.Date;
-                        _context.Pharmacys.Add(p);
-                        await _context.SaveChangesAsync();
+
+                        if (p.Medications != null)
+                        {
+                            _context.Pharmacys.Add(p);
+                            await _context.SaveChangesAsync();
+                        }
                     }
-                    OPDConsultStatus? pxRec = null;
+                    OPDConsultStatus? pxRecord = null;
                     try
                     {
 
-                        pxRec = _context.OPDConsultStatuses.Where(x => x.PatientId == consultation.PatientId).FirstOrDefault();
-                        if (pxRec != null)
+                        pxRecord = _context.OPDConsultStatuses.Where(x => x.Id == Id && x.Date == DateTime.Now.Date).FirstOrDefault();
+                        if (pxRecord != null)
                         {
-                            pxRec.Status = "Seen";
-                            _context.OPDConsultStatuses.Update(pxRec);
+                            pxRecord.Status = "Seen";
+                            _context.OPDConsultStatuses.Update(pxRecord);
                             _context.SaveChanges();
                         }
 
+                        transaction.Commit();
 
                     }
-                    catch (Exception ex) { pxRec.Status = null; return View(); }
+                    catch (Exception ex)
+                    {
 
+                        transaction.Rollback();
+                        pxRecord.Status = null;
+                        return View(consultation);
+                    }
                     return View("success");
+
                 }
-                else
+                catch (Exception Ex)
                 {
-                    _context.Consultations.Add(consultation);
-                    await _context.SaveChangesAsync();
-
-
-                    Pharmacy p = new Pharmacy();
-                    p.PatientId = consultation.PatientId;
-                    p.PatientName = consultation.PatientName;
-                    p.Diagnosis = consultation.Diagnosis;
-                    p.Medications = consultation.Medications;
-                    p.Date = consultation.Date;
-
-                    if (p.Medications != null)
+                    transaction.Rollback();
+                    var opdToConsultation = await _context.OPDConsultStatuses.FindAsync(Id);
+                    if (opdToConsultation == null)
                     {
-                        _context.Pharmacys.Add(p);
-                        await _context.SaveChangesAsync();
+                        return View(consultation);
                     }
+                    ViewBag.Id = opdToConsultation.Id;
+                    ViewBag.PId = opdToConsultation.PatientId;
+                    ViewBag.name = opdToConsultation.PatientName;
+
+                    return View(consultation);
                 }
-                OPDConsultStatus? pxRecord = null;
-                try
-                {
-
-                    pxRecord = _context.OPDConsultStatuses.Where(x => x.PatientId == consultation.PatientId && x.Date==DateTime.Now.Date).FirstOrDefault();
-                    if (pxRecord != null)
-                    {
-                        pxRecord.Status = "Seen";
-                        _context.OPDConsultStatuses.Update(pxRecord);
-                        _context.SaveChanges();
-                    }
-
-
-                }
-                catch (Exception ex) { pxRecord.Status = null; return View(); }
-                return View("success");
-
             }
-            catch (Exception Ex)
-            {
-                var opdToConsultation = await _context.OPDConsultStatuses.FindAsync(Id);
-                if (opdToConsultation == null)
-                {
-                    return NotFound();
-                }
-                ViewBag.Id = opdToConsultation.Id;
-                ViewBag.PId = opdToConsultation.PatientId;
-                ViewBag.name = opdToConsultation.PatientName;
-                return View(consultation);
-            }
-
         }
 
         // POST: CONSULT/Delete/5
@@ -351,14 +383,14 @@ namespace AnwiamEyeClinicServices.Controllers
             {
                 _context.Consultations.Remove(consultation);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ConsultationExists(int id)
         {
-          return (_context.Consultations?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Consultations?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

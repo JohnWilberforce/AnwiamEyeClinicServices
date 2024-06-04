@@ -1,4 +1,4 @@
-﻿@model List<AnwiamEyeClinicServices.Models.Opd>
+﻿@model List<AnwiamEyeClinicServices.Models.RevenueServices>
 
 @{
     ViewData["Title"] = "Opd Frames";
@@ -17,17 +17,9 @@ width:40%; border-radius: 10px;padding:5px; font-weight:bolder; color:white;"><i
     <thead class="accordion-header alert-primary">
         <tr>
             <th></th>
-            <th>
-                PatientId
-            </th>
+           
             <th>
                 PatientName
-            </th>
-            <th>
-                Address
-            </th>
-            <th>
-                Contact
             </th>
             <th>
                 Services
@@ -50,16 +42,7 @@ width:40%; border-radius: 10px;padding:5px; font-weight:bolder; color:white;"><i
                 </td>
 
                 <td>
-                    @(Model[i].PatientId)
-                </td>
-                <td>
                     @(Model[i].PatientName)
-                </td>
-                <td>
-                    @(Model[i].Address)
-                </td>
-                <td>
-                    @(Model[i].Contact)
                 </td>
                 <td>
                     @(Model[i].Services)

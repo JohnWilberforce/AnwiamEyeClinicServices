@@ -58,44 +58,51 @@ width:40%; border-radius: 10px;padding:5px; font-weight:bolder; color:white;"><i
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telephone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SpectacleRx)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FrameType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FramePrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LensType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LensPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AmountPaid)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date.Value.GetDateTimeFormats()[0])
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
+            @if (Model != null)
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Telephone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SpectacleRx)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FrameType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FramePrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LensType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LensPrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalPrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AmountPaid)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date.Value.GetDateTimeFormats()[0])
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quantity)
+                        </td>
 
-        </tr>
-}
-    </tbody>
+                    </tr>
+                }
+            }
+            else{
+<p> No Results seen</p>
+            }
+        </tbody>
 </table>
 </div>

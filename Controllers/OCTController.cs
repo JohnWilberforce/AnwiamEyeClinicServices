@@ -71,7 +71,7 @@ namespace AnwiamEyeClinicServices.Controllers
                 ViewBag.b = "between";
                 ViewBag.a = "and";
                 ViewBag.RetImage = retCount;
-                ViewBag.RetImageTotalAmount = retCount * 10;
+                ViewBag.RetImageTotalAmount = retCount * 100;
                 return View("GetTotals");
             }
             

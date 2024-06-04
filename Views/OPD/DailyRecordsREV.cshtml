@@ -46,7 +46,7 @@
                 <td>
                     <a asp-action="EditRev" asp-route-id="@item.Id"><button class="btn-success" style="border-radius:5px;">Edit</button></a>
  |
-                    <a asp-action="DeleteRev" asp-route-id="@item.Id"><button class="btn-danger" style="border-radius:5px;">Delete</button></a>
+                    <a disabled="true" asp-action="DeleteRev" asp-route-id="@item.Id"><button disabled="true" class="btn-danger" style="border-radius:5px;">Delete</button></a>
                 </td>
             </tr>
         }

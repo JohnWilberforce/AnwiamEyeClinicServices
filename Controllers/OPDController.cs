@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace AnwiamEyeClinicServices.Controllers
 {
@@ -30,8 +31,8 @@ namespace AnwiamEyeClinicServices.Controllers
         public async Task<ViewResult> GenerateOpdNumber()
         {
             ViewBag.OpdNumber = null;
-            var number= await servicesContext.Opds.OrderByDescending(y => y.Id).Select(x => x.Id).FirstOrDefaultAsync();
-            var seqNumber = $"AEC{number+1}/24";
+            var number = await servicesContext.Opds.OrderByDescending(y => y.Id).Select(x => x.Id).FirstOrDefaultAsync();
+            var seqNumber = $"AEC{number + 1}/24";
             ViewBag.OpdNumber = seqNumber;
             return View("Create");
         }
@@ -68,7 +69,7 @@ namespace AnwiamEyeClinicServices.Controllers
                 opd = await servicesContext.Opds.Where(x => x.Date >= stDate && x.Date <= eDate).ToListAsync();
                 if (opd != null)
                 {
-                    ViewBag.counter=opd.Count();
+                    ViewBag.counter = opd.Count();
                     return View(opd);
                 }
                 return View(opd);
@@ -82,17 +83,18 @@ namespace AnwiamEyeClinicServices.Controllers
         [HttpPost]
         public async Task<ActionResult> FrameSales(DateTime stDate, DateTime eDate)
         {
-            List<Opd>? opd = null;
-            List<Opd>? opd2 = null;
+            List<RevenueServices>? opd = null;
+            List<RevenueServices>? opd2 = null;
             ViewBag.stDate = stDate.ToString("MMM-dd").ToUpper();
             ViewBag.eDate = eDate.ToString("MMM-dd").ToUpper();
             try
             {
-                opd = await servicesContext.Opds.Where(x => x.Date >= stDate && x.Date <= eDate).ToListAsync();
-                if (opd != null) { 
-                opd2= opd.Where(x => x.Services.ToLower() == "frame").ToList();
-                ViewBag.OPDFrameSales = opd.Where(x => x.Services.ToLower() == "frame").Sum(x => x.Amount);
-              
+                opd = await servicesContext.RevenueServicies.Where(x => x.Date >= stDate && x.Date <= eDate).ToListAsync();
+                if (opd != null)
+                {
+                    opd2 = opd.Where(x => x.Services.ToLower() == "frame" && x.Status.ToLower() =="paid").ToList();
+                    ViewBag.OPDFrameSales = opd.Where(x => x.Services.ToLower() == "frame" && x.Status.ToLower() == "paid").Sum(x => x.Amount);
+
                     ViewBag.counter = opd2.Count();
                     return View(opd2);
                 }
@@ -105,20 +107,21 @@ namespace AnwiamEyeClinicServices.Controllers
             }
         }
         [HttpPost]
-             public async Task<ActionResult> OnlyConsultationOpd(DateTime stDate, DateTime eDate)
+        public async Task<ActionResult> OnlyConsultationOpd(DateTime stDate, DateTime eDate)
         {
             List<Opd> opd = null;
             ViewBag.Amount = null;
-            ViewBag.stDate=stDate.ToString("MMM-dd").ToUpper();
-            ViewBag.eDate=eDate.ToString("MMM-dd").ToUpper();
+            ViewBag.stDate = stDate.ToString("MMM-dd").ToUpper();
+            ViewBag.eDate = eDate.ToString("MMM-dd").ToUpper();
             try
             {
-                opd = await servicesContext.Opds.Where(x => x.Date >= stDate && x.Date <= eDate).Where(x=>x.Services.Contains("Consultation")).ToListAsync();
+                opd = await servicesContext.Opds.Where(x => x.Date >= stDate && x.Date <= eDate).Where(x => x.Services.Contains("Consultation")
+                && x.Status.ToLower() == "paid").ToListAsync();
                 if (opd != null)
                 {
-                    var sumAmount=opd.Where(x=>x.Amount>0).Sum(x=>x.Amount);
-                    ViewBag.counter=opd.Count();
-                    ViewBag.Amount=sumAmount;
+                    var sumAmount = opd.Where(x => x.Amount > 0).Sum(x => x.Amount);
+                    ViewBag.counter = opd.Count();
+                    ViewBag.Amount = sumAmount;
                     return View(opd);
                 }
                 return View(opd);
@@ -133,58 +136,60 @@ namespace AnwiamEyeClinicServices.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(string PatientId, string PatientName, string Address, string Contact,
-            string[] Services, decimal Amount, DateTime Date)
+            string[] Services, decimal Amount, DateTime Date, string Age)
         {
             ViewBag.records = new List<Opd>() { };
             Opd opd = new Opd();
             OPDConsultStatus ops = new OPDConsultStatus();
-            try
+            using (var transaction = servicesContext.Database.BeginTransaction())
             {
-                opd.PatientId = PatientId;
-                opd.PatientName = PatientName;
-                
-                opd.Address = Address;
-                opd.Contact = Contact;
-                opd.Services = string.Join(", ", Services);
-                opd.Amount = Convert.ToDecimal(Amount);
-                opd.Date = Date;
-                opd.Status = "";
-                if (ModelState.IsValid)
+                try
                 {
+                    opd.PatientId = PatientId;
+                    opd.PatientName = PatientName;
+
+                    opd.Address = Address;
+                    opd.Contact = Contact;
+                    opd.Services = string.Join(", ", Services);
+                    opd.Amount = Convert.ToDecimal(Amount);
+                    opd.Date = Date;
+                    opd.Status = "";
+                    opd.Age = Age;
                     await servicesContext.Opds.AddAsync(opd);
                     await servicesContext.SaveChangesAsync();
+
+                    var curr = await servicesContext.Opds.Where(x => x.PatientId == PatientId).OrderByDescending(x => x.Id).Select(y => y.Id).FirstOrDefaultAsync();
+
+                    ops.Id = curr;
+                    ops.PatientId = PatientId;
+                    ops.PatientName = PatientName;
+
+                    ops.Address = Address;
+                    ops.Contact = Contact;
+                    ops.Services = string.Join(", ", Services);
+                    ops.Amount = Convert.ToDecimal(Amount);
+                    ops.Date = Date;
+                    ops.Status = "";
+                    ops.Age = Age;
+                    await servicesContext.OPDConsultStatuses.AddAsync(ops);
+                    await servicesContext.SaveChangesAsync();
+
+                    ViewBag.success = "Patient is Added Successfully";
+                    transaction.Commit();
+
+                    return View();
+
                 }
 
-                var curr = await servicesContext.Opds.OrderByDescending(x=>x.Id).Select(y => y.Id ).FirstOrDefaultAsync();
-                
-                ops.Id = curr;
-                ops.PatientId = PatientId;
-                ops.PatientName = PatientName;
-
-                ops.Address = Address;
-                ops.Contact = Contact;
-                ops.Services = string.Join(", ", Services);
-                ops.Amount = Convert.ToDecimal(Amount);
-                ops.Date = Date;
-                opd.Status = "";
-                
-                    if (ModelState.IsValid)
-                    {
-                        await servicesContext.OPDConsultStatuses.AddAsync(ops);
-                        await servicesContext.SaveChangesAsync();
-                    }
-                    ViewBag.success = "Patient is Added Successfully";
-                
-
-                return View();
-
-            }
-            catch
-            {
-                ViewBag.success = "Try Again";
-                return View();
+                catch
+                {
+                    transaction.Rollback();
+                    ViewBag.success = "Try Again";
+                    return View();
+                }
             }
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateAdmin(string PatientId, string PatientName, string Address, string Contact,
@@ -228,24 +233,25 @@ namespace AnwiamEyeClinicServices.Controllers
             string[] Services, decimal Amount, DateTime Date)
         {
             ViewBag.records = new List<Opd>() { };
-           RevenueServices opd = new RevenueServices();
+            RevenueServices opd = new RevenueServices();
             try
             {
 
                 opd.PatientName = PatientName;
                 opd.Services = string.Join(", ", Services);
-                opd.Amount = Convert.ToDecimal(Amount);              
+                opd.Amount = Convert.ToDecimal(Amount);
                 opd.Date = Date;
-                if (opd.Services.IsNullOrEmpty()||opd.PatientName==null)
+                opd.Status = "Paid";
+                if (opd.Services.IsNullOrEmpty() || opd.PatientName == null)
                 {
                     throw new Exception();
                 }
                 await servicesContext.RevenueServicies.AddAsync(opd);
-               await servicesContext.SaveChangesAsync();
+                await servicesContext.SaveChangesAsync();
                 ViewBag.success = "Patient is Added Successfully";
                 return View("Create");
             }
-            catch(Exception Ex)
+            catch (Exception Ex)
             {
                 ViewBag.success = "Try Again";
                 return View("Create");
@@ -253,12 +259,12 @@ namespace AnwiamEyeClinicServices.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> DailyRecordsOPD(DateTime date)
+        public async Task<ActionResult> DailyRecordsOPD(DateTime date1, DateTime date2)
         {
             List<Opd> res = null;
             try
             {
-                res = await servicesContext.Opds.Where(x => x.Date == date && x.Services.Contains("Consultation")).ToListAsync();
+                res = await servicesContext.Opds.Where(x => (x.Date >= date1 && x.Date <= date2) && x.Services.Contains("Consultation")).ToListAsync();
                 //ViewBag.records=res;
 
                 return View(res);
@@ -267,15 +273,16 @@ namespace AnwiamEyeClinicServices.Controllers
             {
                 return View("Create");
             }
+
         }
-       
+
         [HttpPost]
         public async Task<ActionResult> DailyRecordsREV(DateTime date)
         {
             List<RevenueServices> res = null;
             try
             {
-                res=await servicesContext.RevenueServicies.FromSqlInterpolated($"select * from udf_GetDailyRecordsRev({date})").ToListAsync();
+                res = await servicesContext.RevenueServicies.FromSqlInterpolated($"select * from udf_GetDailyRecordsRev({date})").ToListAsync();
                 return View(res);
             }
             catch (Exception Ex)
@@ -511,7 +518,7 @@ namespace AnwiamEyeClinicServices.Controllers
                     {
                         return View();
                     }
-                    var rev = await servicesContext.RevenueServicies.FindAsync (Id);
+                    var rev = await servicesContext.RevenueServicies.FindAsync(Id);
                     if (rev != null)
                     {
                         servicesContext.RevenueServicies.Remove(rev);

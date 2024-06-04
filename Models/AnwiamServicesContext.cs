@@ -39,7 +39,7 @@ public partial class AnwiamServicesContext : DbContext
 
 
     public virtual DbSet<Vft> Vfts { get; set; }
-    //
+
     public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
 
     public virtual DbSet<AspNetRoleClaim> AspNetRoleClaims { get; set; }
@@ -70,7 +70,7 @@ public partial class AnwiamServicesContext : DbContext
 
             entity.ToTable("RetinalImage");
         });
-            modelBuilder.Entity<Consultation>(entity =>
+        modelBuilder.Entity<Consultation>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Consulta__3214EC07BC358BDE");
 
@@ -96,7 +96,7 @@ public partial class AnwiamServicesContext : DbContext
                 .HasMaxLength(30)
                 .IsUnicode(false);
             entity.Property(e => e.PatientName)
-                .HasMaxLength(100)
+                .HasMaxLength(200)
                 .IsUnicode(false);
             entity.Property(e => e.SpectacleRx)
                 .HasMaxLength(200)
@@ -118,7 +118,7 @@ public partial class AnwiamServicesContext : DbContext
         {
             entity.HasNoKey();
         });
-            modelBuilder.Entity<FrameStock>(entity =>
+        modelBuilder.Entity<FrameStock>(entity =>
         {
             entity
                 .HasNoKey()
@@ -136,7 +136,7 @@ public partial class AnwiamServicesContext : DbContext
         modelBuilder.Entity<Oct>(entity =>
         {
             entity.HasKey(e => e.ScanId);
-                entity.ToTable("OCT");
+            entity.ToTable("OCT");
 
             entity.Property(e => e.Date).HasColumnType("date");
             entity.Property(e => e.Macula)
@@ -175,11 +175,11 @@ public partial class AnwiamServicesContext : DbContext
             entity.ToTable("OPD");
 
             entity.Property(e => e.Address)
-                .HasMaxLength(100)
+                .HasMaxLength(500)
                 .IsUnicode(false);
             entity.Property(e => e.Amount).HasColumnType("decimal(18, 0)");
-            entity.Property(e => e.Contact).HasMaxLength(15);
-            entity.Property(e=>e.Status).HasMaxLength(15);
+            entity.Property(e => e.Contact).HasMaxLength(30);
+            entity.Property(e => e.Status).HasMaxLength(15);
             entity.Property(e => e.Date)
                 .HasMaxLength(20)
                 .IsUnicode(false);
@@ -188,11 +188,11 @@ public partial class AnwiamServicesContext : DbContext
                 .IsUnicode(false);
             entity.Property(e => e.PatientName)
                 .HasMaxLength(100)
-                .IsRequired()
                 .IsUnicode(false);
             entity.Property(e => e.Services)
                 .HasMaxLength(120)
                 .IsUnicode(false);
+            entity.Property(e => e.Age).HasMaxLength(15).IsUnicode(false);
         });
         modelBuilder.Entity<RevenueServices>(entity =>
         {
@@ -238,17 +238,17 @@ public partial class AnwiamServicesContext : DbContext
                 .IsUnicode(false);
             entity.Property(e => e.PatientName)
                 .HasMaxLength(100)
-                .IsRequired()
                 .IsUnicode(false);
             entity.Property(e => e.Services)
                 .HasMaxLength(120)
                 .IsUnicode(false);
+            entity.Property(e => e.Age).HasMaxLength(15).IsUnicode(false);
         });
 
         modelBuilder.Entity<Purchase>(entity =>
         {
             entity.HasKey(e => e.PurchaseId);
-                entity.ToTable("Purchase");
+            entity.ToTable("Purchase");
 
             entity.Property(e => e.AmountPaid).HasColumnType("decimal(18, 0)");
             entity.Property(e => e.PatientName)
